@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.AuthorizationMapper">
+	<resultMap type="com.speed.entity.Authorization" id="AuthorizationResult">		
+	</resultMap>
+    <resultMap type="com.speed.entity.Authorization" id="AuthorizationResult1" extends="AuthorizationResult">		
+		 <association property="users" column="userId" 
+	                  select="com.speed.mapper.UserMapper.findbyuserId"></association>
+	</resultMap>
+	 
+	 
+	 <select id="findAuthorization" parameterType="String" resultMap="AuthorizationResult">
+		select * from `sc_file_authorization` where  userid=#{param1};
+	 </select> 
+	 
+	 <select id="findAuthor" resultMap="AuthorizationResult">
+		select * from `sc_file_authorization`
+	 </select>
+	 
+	 <select id="find" resultMap="AuthorizationResult">
+		select * from `sc_file_authorization` where fileurl=#{fileurl} and userid= #{userid} ;
+	 </select> 
+	 
+	 <delete id="delete" parameterType="Integer">
+		DELETE FROM sc_file_authorization WHERE authorizationid=#{param1}
+	</delete>
+	  
+	<insert id="save"  parameterType="com.speed.entity.Authorization">
+	  insert into `sc_file_authorization` 
+	  (
+	  `userid`,
+	  `fileurl`,
+	  `filename`,
+	  `authorizationstate`,
+	  `username`
+	  ) 
+	  values 
+	  (
+	  #{userid},
+	  #{fileurl},
+	  #{filename},
+	  #{authorizationstate},
+	  #{username}
+	  )
+	</insert>
+	
+	<update id="updata" parameterType="com.speed.entity.Authorization">
+		update sc_file_authorization
+		<set>
+			userid = #{userid},
+			fileurl = #{fileurl},
+			filename = #{filename},
+			authorizationstate = #{authorizationstate},
+			username = #{username}
+		</set>
+		where 
+	    authorizationid=#{authorizationid}
+	</update>
+
+	
+	
+	
+	
+	
+</mapper>

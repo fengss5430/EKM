@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>ShadedMesh White</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="18.3408994%" x2="50%" y2="79.0258456%" id="linearGradient-1">
+            <stop stop-color="#009EFF" offset="0%"></stop>
+            <stop stop-color="#00DDFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="81.9758361%" y1="50%" x2="20.644209%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#009EFF" offset="0%"></stop>
+            <stop stop-color="#00DDFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#009EFF" offset="0%"></stop>
+            <stop stop-color="#00DDFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ShadedMesh-White" sketch:type="MSArtboardGroup">
+            <rect id="24x24" opacity="0" fill="#000000" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect>
+            <g id="Shade" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)">
+                <polygon id="right" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" points="20 0 20 13 13 20 13 7 "></polygon>
+                <polygon id="top" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" points="7 0 20 0 13 7 0 7 "></polygon>
+                <rect id="front" fill="url(#linearGradient-3)" sketch:type="MSShapeGroup" x="0" y="7" width="13" height="13"></rect>
+            </g>
+            <g id="Mesh" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)" stroke="#FFFFFF">
+                <polygon id="right" stroke-width="0.5" sketch:type="MSShapeGroup" points="20 0 20 13 13 20 13 7 "></polygon>
+                <polygon id="top" stroke-width="0.5" sketch:type="MSShapeGroup" points="7 0 20 0 13 7 0 7 "></polygon>
+                <rect id="front" stroke-width="0.5" sketch:type="MSShapeGroup" x="0" y="7" width="13" height="13"></rect>
+                <polygon id="outline" sketch:type="MSShapeGroup" points="7 0 20 0 20 13 13 20 0 20 0 7 "></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

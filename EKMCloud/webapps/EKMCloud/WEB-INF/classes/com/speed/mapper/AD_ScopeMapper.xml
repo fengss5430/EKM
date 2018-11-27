@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.AD_ScopeMapper">
+	<resultMap type="com.speed.entity.Sc_AD_Scope" id="Sc_AD_ScopeResult">
+	</resultMap>
+
+	<insert id="addADScope" parameterType="com.speed.entity.Sc_AD_Scope" useGeneratedKeys="true" keyProperty="adid">
+		insert into `sc_ad_scope`
+		(
+		`dcipfqdn`,                                
+		`netbois`,
+		`fqdndns`,
+		`port`,
+		`username`,
+		`password`
+		)
+		values
+		(
+		#{dcipfqdn},
+		#{netbois},
+		#{fqdndns},
+		#{port},
+		#{username},
+		#{password}
+		)
+	</insert>
+	
+	<delete id="deleteADScope" parameterType="int">
+		DELETE FROM sc_ad_scope WHERE adid=#{param1}
+	</delete>
+	
+	<select id="findAll" resultMap="Sc_AD_ScopeResult">
+		select * from sc_ad_scope
+	</select>
+	
+	<select id="isExit" parameterType="com.speed.entity.Sc_AD_Scope" resultType="int">
+		SELECT count(1) FROM sc_ad_scope
+		WHERE dcipfqdn = #{dcipfqdn} AND netbois = #{netbois}
+	    AND fqdndns = #{fqdndns} AND port = #{port} 
+	    AND username = #{username} AND password = #{password}
+	</select>
+	
+	<select id="findByADScopeInfo" parameterType="com.speed.entity.Sc_AD_Scope" resultMap="Sc_AD_ScopeResult">
+		SELECT * FROM sc_ad_scope 
+		WHERE dcipfqdn = #{dcipfqdn} AND netbois = #{netbois}
+	    AND fqdndns = #{fqdndns} AND port = #{port} 
+	    AND username = #{username} AND password = #{password}
+	</select>
+	
+	<select id="findByID" parameterType="int" resultMap="Sc_AD_ScopeResult">
+		SELECT * FROM sc_ad_scope WHERE adid = #{param1} 
+	</select>
+</mapper>

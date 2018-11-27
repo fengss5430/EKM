@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.speed.mapper.BackUpMapper">
+	<resultMap type="com.speed.entity.BackUp" id="BackUpResult">		
+	</resultMap>
+	<select id="find" resultMap="BackUpResult">
+		select * from `sc_config_backup`
+	</select>
+	<update id="upBackup" parameterType="String">
+	 	update sc_config_backup set backupurl = #{param1}
+	</update>
+	<insert id="saveBackup" parameterType="String">
+	  insert into `sc_config_backup` 
+	  (
+	  `backupkey`,
+	  `backupurl`
+	  ) 
+	  values 
+	  (
+	  #{param1},
+	  #{param2}
+	  )
+	</insert>
+</mapper>

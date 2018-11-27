@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.RoleMapper">
+	<resultMap type="com.speed.entity.Role" id="RoleResult">		
+	</resultMap>
+	
+    <resultMap type="com.speed.entity.Power" id="PowerResult">		
+	</resultMap>
+	
+	
+	
+   <delete id="deleteRole" parameterType="Integer">
+		delete from sc_role where roleid = #{param1}
+	</delete>
+	
+    <select id="findRoleByid" parameterType="Integer" resultMap="RoleResult">
+		select 
+		*
+		from sc_role where roleid=#{param1} 
+	</select>
+	<select id="findByRoleName" parameterType="String" resultMap="RoleResult">
+		select 
+		*
+		from 
+		sc_role 
+		where 
+		binary rolename=#{param1} 
+	</select>
+	<select id="findRole" resultMap="RoleResult">
+		select 
+		*
+		from sc_role 
+	</select>
+	
+	<select id="find" resultMap="PowerResult">
+		SELECT
+	    *
+		FROM		
+		sc_power 
+	</select>
+	
+	<select id="findid" parameterType="String" resultMap="PowerResult">
+		SELECT
+	    *
+		FROM		
+		sc_power where powerid != #{param1}
+	</select>
+	
+	
+	<select id="findPowerByid" parameterType="String" resultMap="PowerResult">
+		SELECT
+	    *
+		FROM
+		
+		sc_power 
+		WHERE 
+		
+		powerid=#{param1}
+	
+		
+	</select>
+	
+	<insert id="saveRole" parameterType="String">
+	  insert into `sc_role` 
+	  (
+	  `rolename`,
+	  `powerid`,
+	  `createtime`
+	  ) 
+	  values 
+	  (
+	  #{param1},
+	  #{param2},
+	  NOW()
+	  )
+	</insert>
+	
+
+	
+	
+	
+	<update id="updaterole" parameterType="com.speed.entity.Role">
+	 update sc_role
+	  <set>		 
+	        <if test="roleName != null">
+				rolename = #{roleName,jdbcType=VARCHAR},
+			</if>
+	        <if test="powerid != null">
+				powerid = #{powerid,jdbcType=VARCHAR},
+			</if>
+			
+			updatetime=DATE_FORMAT(NOW(),'%Y-%m-%d')
+	 </set>
+	            
+	  where roleid=#{roleId}
+	</update>
+	
+	
+	
+	
+</mapper>

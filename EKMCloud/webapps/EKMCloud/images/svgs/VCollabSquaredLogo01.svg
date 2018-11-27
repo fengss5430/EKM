@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Mobile Portrait</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="96" height="96"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="96" height="96" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M42.0126582,20.532381 L34.2396022,36.0790476 L47.3652803,62.5057143 L62.9448463,62.5057143 L42.0126582,20.532381 Z M31.6030741,0.0828571429 L0.259493671,62.5057143 L15.835443,62.5057143 L39.4629295,15.4552381 L31.6030741,0.0828571429 L31.6030741,0.0828571429 Z" id="path-3"></path>
+        <linearGradient x1="19.2633048%" y1="50%" x2="92.5336056%" y2="85.0359794%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#231F20" offset="32.3223547%"></stop>
+            <stop stop-color="#231F20" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Portrait">
+            <use id="Rectangle" stroke="#231F20" mask="url(#mask-2)" stroke-width="8" fill="#FC1A22" xlink:href="#path-1"></use>
+            <g id="VCollabShadedLogo" transform="translate(16.000000, 16.000000)">
+                <g id="g10" transform="translate(32.000000, 32.000000) scale(1, -1) translate(-32.000000, -32.000000) ">
+                    <g id="g62" transform="translate(0.361664, 0.761905)">
+                        <g id="g64-Clipped" transform="translate(0.000000, 0.000000)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <g id="path68"></g>
+                            <g id="g64" mask="url(#mask-4)" fill="url(#linearGradient-5)">
+                                <g id="g70" transform="translate(0.000000, 0.000000)">
+                                    <g id="g72" transform="translate(0.000000, -0.000000)">
+                                        <path d="M42.0126582,20.532381 L34.2396022,36.0790476 L47.3652803,62.5057143 L62.9448463,62.5057143 L42.0126582,20.532381 Z M31.6030741,0.0828571429 L0.259493671,62.5057143 L15.835443,62.5057143 L39.4629295,15.4552381 L31.6030741,0.0828571429 L31.6030741,0.0828571429 Z" id="path84"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="g86" transform="translate(0.602441, 0.341524)" stroke="#000000" stroke-width="0.9375">
+                        <path d="M41.7721519,20.952381 L33.9981917,36.4990476 L47.124774,62.9257143 L62.7034358,62.9257143 L41.7721519,20.952381 Z M31.3616637,0.502857143 L0.0180831826,62.9257143 L15.5949367,62.9257143 L39.2224231,15.8752381 L31.3616637,0.502857143 L31.3616637,0.502857143 Z" id="path88"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

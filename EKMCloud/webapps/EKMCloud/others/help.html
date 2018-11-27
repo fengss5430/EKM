@@ -1,0 +1,522 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
+    <title>VCollabWeb Viewer Help</title>	
+    <style>
+            .highlightbanner
+            {
+                background-color:#BBBBBB;
+            }
+            .img
+            {
+                margin-left:0px;
+            
+            }
+            .note
+            {
+                margin:16px;
+                padding:16px;
+                background-color:#f6f8fa;
+                border: solid 1px red;
+            }
+            .tblApi
+            {
+                margin-left:10px;
+                max-width: 100%;
+            }
+            .tdtitle
+            {
+                font-weight: bold;
+                width:150px;
+
+            }
+            img
+            {
+                max-width: 100%;
+                height:auto;
+            }
+            p
+            {
+                text-align:justify;
+            }
+            h3
+            {
+                margin:0px;
+                background-color:#BBBBBB;
+            }
+            h4
+            {
+                margin:10px;
+            }
+            ul
+            {
+                margin:10px;
+            }
+            figure {
+                display: inline-block;
+                margin-bottom:10px;
+                margin-left:20px;
+                margin-top:0px;
+                margin-right:0px;
+            }
+            figure img {
+                vertical-align: top;
+                margin-top:5px;
+                margin-bottom:5px;
+            }
+            figure figcaption {
+                text-align: center;
+            }
+            pre
+            {
+                //max-width: 100%;
+                white-space: pre-wrap;
+                text-align: justify;
+            }
+        </style>
+</head>
+<body>
+<div style="margin:10px;">
+	<h2 class="highlightbanner">VCollabWeb Viewer Help</h2>
+    <p>VCollabWeb Viewer is a web application to view VCollab 3D report with viewpoints (similar to VCollab Presenter Lite)  in any browser without installing any plugins. VCollabWeb Viewer can display viewpoints from a wCAX file, a proprietary format which can be exported from VCollab Pro.The user can launch this web application from any browser and load a wCAX file from a local system or from a server.</p>
+
+    <ul>
+      <li>  This new application will simplify 3D CAE data sharing as there is no need to install VCollab Presenter Lite plugin by the client.</li>
+      <li>  This initiative can significantly improve the ability of the enterprises to share the product performance data and improve the collaboration among the simulation engineers, designers, chief engineers, testing teams and suppliers, leading to shorter cycles of decision making and improving the quality of the product and reducing the time to bring the product to the market.</li>
+    </ul>
+    <p> The concept of viewpoints in VCollab enables the designers and analysts review 3D CAE report without much effort. The VCollabWeb viewer using wCAX report also enables similar viewing options. Focus here is viewing predefined viewpoints with labels, only viewing functions are supported.</p>
+       
+    <h3>Quick Links</h3>
+    <ul>
+        <li><a href="#wCAX_File">wCAX File</a></li>
+        <li><a href="#Viewer_GUI">Viewer GUI</a></li>
+        <li><a href="#wCAX_Creation">How to create wCAX file?</a></li>
+        <li><a href="#Supported_Features">Supported Visualization Features</a></li>
+        <li><a href="#Supported_Browsers">Supported Browsers</a></li>
+        <li><a href="#WorkFlow">Work Flow</a></li>  
+        <li><a href="#Embedding_VCollabWebViewer">Embedding VCollabWeb Viewer in a web page</a></li>
+        <li><a href="#Opensourcesoftwares">Open Source Softwares</a></li>
+    </ul>
+    
+	<h3 id="wCAX_File">wCAX File</h3>
+    <div>
+        <p>
+        VCollabWeb Viewer uses VCollab proprietary format called wCAX to render the 3D model into the Web Pages.The wCAX format contains minimal data required for rendering viewpoints with minimal processing on the browser. VCollab Pro has the function to export wCAX file.&nbsp;<span>&nbsp;</span>The size of a wCAX file depends on the content in the viewpoint. If only a few parts and results are used in viewpoints then the wCAX file will be smaller than CAX file. If all the results and all the instances (for transient animation) from a CAX file are used in viewpoints, then wCAX file size may be larger than CAX file. 
+        </p>
+    <div class="note">
+        <em><strong>Note: </strong></em>Web applications use java scripts and have certain limitations in computation as compared to standalone applications. Try to avoid using large models (&gt; 1million elements) with many instances.
+    </div>
+    
+    </div>
+
+    <h3 id="Viewer_GUI">Viewer GUI</h3>
+    <div>
+        <p>When VCollabWeb Viewer is opened in a browser, GUI of the viewer will look like a below image</p>
+        <figure>
+            <img src="Help_Images/VCollab_Web_Viewer.png">
+            <figcaption>Desktop View.</figcaption>
+        </figure>       
+        <br />
+        <figure>
+            <img src="Help_Images/VCollabViewerMobile3.png" />&nbsp;&nbsp;
+            <img src="Help_Images/VCollabViewerMobile4.png" />&nbsp;&nbsp;
+        <!--    <img src="Help_Images/VCollabViewerMobile5.png" />-->
+            <figcaption>Mobile View.</figcaption>
+        </figure>    
+        <p><strong>GUI functionalities</strong></p>
+        <ul>
+            <li><a href="#Viewer_logo">Viewer logo</a></li>
+            <li><a href="#File_open">File open</a></li>
+            <li><a href="#Menu_bar">Menu bar</a></li>
+            <li><a href="#3D_Slide_UI">3D Slide UI</a></li>
+            <li><a href="#Mouse_interface">Mouse interface</a></li>
+            <li><a href="#Touch_interface">Touch interface</a></li>  
+        </ul>
+
+
+        <p id="Viewer_logo"><strong>Viewer logo</strong></p>
+        <p>
+            Click the "Viewer logo" icon to display the Version Dialog Box.
+            <br />
+            <img class="img" src="Help_Images/VersionDialog.png" />
+        </p>
+        <p id="File_open"><strong>File open</strong></p>
+        <p>
+            Click the "File open" icon <img src="Help_Images/Fileopen.png" />  to open WCax file in the viewer. Using this option user can provide WCAX files from local hard disk or from a network.
+         </p>
+        <div class="note">
+            <em><strong>Note: </strong></em>This icon will not be visible when it is disabled in configuration.
+        </div>
+    
+        
+        <p id="Menu_bar"><strong>Menu bar</strong></p>
+        <p>
+            This "Menu bar" provides different functionality for the viewer. The number of icons available on the menu bar depends on the configuration. 
+            <br />
+            <img class="img" src="Help_Images/menu.png" />
+        </p>
+        <div class="note">
+            <em><strong>Note: </strong></em>This menu bar will not be visible when it is disabled in configuration or Query string parameter of GUI is false.
+        </div>
+       
+        <p><strong>Menu Icons</strong></p>
+        <ul>
+            <li><a href="#Viewpoints">Viewpoints</a></li>
+            <li><a href="#CAE_Animation">CAE Animation</a></li>
+            <li><a href="#Display_Modes">Display Modes</a></li>
+            <li><a href="#Capture">Capture</a></li>
+            <li><a href="#Fit_View">Fit View</a></li>
+            <li><a href="#Reset_Viewpoints">Reset Viewpoints</a></li>
+            <li><a href="#Legend">Legend</a></li>
+            <li><a href="#Frame_Info">Frame Info</a></li>
+            <li><a href="#Help">Help</a></li>
+            <li><a href="#Fullscreen">Full Screen</a></li>
+        </ul>
+        <div style="margin-left:35px">
+        <p id="Viewpoints"><strong>Viewpoints</strong></p>
+        <p>
+            Click this icon to display the Viewpoint list sidebar.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/ViewpointIcon24px.svg');"></div> &nbsp;&nbsp; Viewpoint
+        <br />  
+        <p> In the Viewpoints bar, list of all viewpoints of the selected viewpath is displayed.The user can select different viewpoint from the list by clicking on any of the viewpoint images.</p>
+        <img src="Help_Images/viewpath.png" />
+        <div class="note">
+            <em><strong>Note: </strong></em>Only viewpoint names will be displayed instead of images when WCAX file is saved with thumbnail option unchecked.
+        </div>
+        <p id="CAE_Animation"><strong>CAE Animation</strong></p>
+        <p>
+                       Click this icon to display the CAE Animation sidebar. CAE Animation icon will be disabled for CAD models/animation is unavailable.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/CAEAnimIcon24px.svg');"></div> &nbsp;&nbsp; CAE Animation
+        <br />  <br />
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/playNew24.svg');background-repeat: no-repeat;background-position: center;"></div> &nbsp;&nbsp; CAE Animation disabled
+        <br />
+        <p> In the CAE Animation sidebar, the user can play/pause the animation, move between frames, controls the animation speed and can change the scale factor.</p>
+        <img src="Help_Images/caeanimation_annotation.png" />
+         <div class="note">
+            <em><strong>Note: </strong></em> The Transient animation will play only when the viewpoint is saved with transient animation ON else linear/eigen animation will be played.
+        </div>
+
+        <p id="Display_Modes"><strong>Display Modes</strong></p>
+         <p>
+            Click this icon to display the Display Modes sidebar.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/DM_ShadedMesh24.svg');"></div> &nbsp;&nbsp; Display Modes
+        <br />
+        <p> In the Display Modes sidebar, the user can select different mesh display modes.<br />
+        <br /><img src="Help_Images/displaymodes.png" />
+        <p>
+
+        <p id="Capture"><strong>Capture</strong></p>
+         <p>
+            Click this icon to display the Capture sidebar.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/SaveButton.svg');"></div> &nbsp;&nbsp; Capture
+        <br />
+        <p> In the capture sidebar, the user can select an image format (png, jpg, bmp), provide a file name and click save button to save the current display as an image.<br />
+             <br /><img src="Help_Images/capture.png" />
+        <p>
+
+        <p id="Fit_View"><strong>Fit View</strong></p>
+         <p>
+            Click this icon to fit the model into screen display.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/FitviewIcon24.svg');"></div> &nbsp;&nbsp;  Fit View
+        <br />
+
+
+        <p id="Reset_Viewpoints"><strong>Reset Viewpoints</strong></p>
+        <p>
+            Click this icon to reset the view to the current viewpoint.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/ResetIcon24px.svg');"></div> &nbsp;&nbsp; Reset Viewpoints
+        <br />      
+        
+        
+        <p id="Legend"><strong>Legend</strong></p>
+        <p>
+            Click this icon to toggle the legend visibility. Legend icon will be disabled for CAD models.
+        </p> 
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/LegendNewSelected.svg');"></div> &nbsp;&nbsp; Legend visible
+        <br /> <br />
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/LegendNew.svg');"></div> &nbsp;&nbsp;   Legend not visible
+        <br /> <br />
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/LegendDisabled.svg');"></div> &nbsp;&nbsp;   Legend disabled
+
+
+
+        <p id="Frame_Info"><strong>Frame Info</strong></p>
+        <p>
+            Click this icon to display the frame information dialog box. Frame Info icon will be disabled for CAD models.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/info1.svg');"></div> &nbsp;&nbsp; Frame info 
+        <br /> <br />
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/infodisable1.svg');"></div> &nbsp;&nbsp;  Frame info disabled
+
+
+            
+        <p id="Help"><strong>Help</strong></p>
+        <p>
+            Click this icon to view the help page.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/helpIcon.svg');"></div> &nbsp;&nbsp;Help
+
+        <p id="Fullscreen"><strong>Full Screen</strong></p>
+        <p>
+            Click this icon to toggle between the full screen display mode and normal display mode.The user can also exit from full screen display mode by pressing Esc key in the keyboard.
+        </p>
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/FullscreenIcon24px.svg');"></div> &nbsp;&nbsp;  Full Screen display mode
+        <br /> <br />
+        <div style="float:left;width:24px;height:24px;background-color:black;background-image: url('Help_Images/svg/FullscreenExitIcon24px.svg');"></div> &nbsp;&nbsp;   Exit full screen display mode
+        </div>
+ 
+
+        
+        <p id="3D_Slide_UI"><strong>3D Slide UI</strong></p>
+        <p>These controls allow the user to view different viewpoints in the current viewpath. Left arrow loads previous viewpoint and right arrow loads next viewpoint in the current viewpath.
+            <br />
+            <img class="img"  src="Help_Images/BottomCrtl.png" />
+        </p>  
+        <div class="note">
+            <em><strong>Note: </strong></em>These controls will not be visible when there are no viewpoints or only one viewpoint exists.
+        </div>     
+       
+        <p id="Mouse_interface"><strong>Mouse interface</strong></p>
+        <p>
+            Once the model is loaded into the viewer, User can interact with model using following mouse actions<br />
+            <img class="img"  src="Help_Images/mouseCtrl.png" /><br />
+            <em>Rotate:</em> Click the left mouse button, hold and move.<br />          
+            <em>Zoom:</em> Click the middle mouse button, hold and move / Rotate the mouse scroll wheel.<br />
+            <em>Pan:</em> Click the right mouse button, hold and move.<br />
+        </p>
+      
+        <p id="Touch_interface"><strong>Touch interface</strong></p>
+        <p>
+            User can interact with the model using one / two fingers in a touch-enabled device.<br />
+            <em>Rotate:</em> Use one finger for rotating.<br />          
+            <em>Zoom:</em> Use two fingers to pinch-in / pinch-out for zooming in / zooming out.<br />
+            <em>Pan:</em> Use two fingers for panning.<br />
+        </p>
+
+
+    </div>
+
+    <h3 id="wCAX_Creation">How to create wCAX file?</h3>  
+    <div>
+        <ol>
+            <li><a href="#Native2CAX">Converting native file to CAX file.</a></li>
+            <li><a href="#Create_Viewpoint">Creating viewpoint in CAX File.</a></li>
+            <li><a href="#Create_wCAX">Creating wCAX File.</a></li>
+        </ol>   
+        <p>The wCAX files can be created from native files using a set of VCollab Tools and python scripts. The following steps explain wCAX file creation process in detail,</p>    
+        <img alt="" border="0" src="Help_Images/VCollab_wCAX_Conversion.png" />
+        <p id="Native2CAX"><strong>Converting Native file to CAX file</strong></p>
+        <p>Native CAE/CAD files are translated to CAX file using VMoveCAE/VMoveCAD.</p>
+        <p><strong>For CAE Files,</strong></p>
+               <p><strong>Interactive Mode</strong></p>      
+                <ol>
+                    <li>Open VMoveCAE -&gt;Load model -&gt;&quot;select a native file&quot;</li>
+                    <li>Change the geometry (part) and result, if required.</li>
+                    <li>File -&gt; Save CAx</li>
+                </ol>
+                <p><strong>Batch Mode</strong></p>
+                <p>&quot;VMoveCAEBatch.exe [option=value] &lt;model_file&gt; [results_file] &lt;CAX_file&gt;&quot;</p>
+                <p><a href="http://training.vcollab.com/VMoveCAE2009_Sol.html">Click here</a> for more details</p>
+
+        <p><strong>For CAD Files,</strong></p> 
+                 <p><strong>Interactive Mode</strong></p> 
+                    <ol>
+                        <li>Open VMoveCAD -&gt;click &quot;Input CAD File&quot; -&gt;&quot;select a file&quot;</li>
+                        <li>Change the options, if required.</li>
+                        <li>Click &quot;Translate&quot; button.</li>
+                    </ol>
+                    <p><strong>Batch Mode</strong></p>
+                    <p>&quot;VMoveCADBatch.exe [option=value] input_cad_file output_cax_file</p>
+                    <p><a href="http://training.vcollab.com/VMoveCAD_Sol.html">Click here</a> for more details</p>
+
+
+        <p id="Create_Viewpoint"><strong>Creating viewpoint in CAX File</strong></p>
+        <p>Viewpoints can be created in two different ways using VCollabPro. One method is to use python script with VCollabPro for creating Viewpoints and another method is to create manually using VCollabPro GUI.</p>
+            <p><strong>Method 1</strong></p>
+                   <p>Interactive Mode using Python Script</p>
+                        <ol>
+                            <li>Open model in VCollabPro</li>
+                            <li>File -&gt; Import -&gt;Select the python script to create viewpoint</li>
+                            <li>Save the Cax File.</li>
+                        </ol>
+                    <p>Batch Mode using Python Script</p>
+                            <p>&#39;VCollabPro.exe -b &quot;C:\Temp\MyReport_A.py&quot;&#39;</p>
+
+            <p><strong>Method 2</strong></p>
+                    <p>Using VCollabPro GUI</p>
+                        <ol>
+                            <li>Open model in VCollabPro</li>
+                            <li>Click on Viewpoints Tab on Product explorer windows</li>
+                            <li>Right Click on Viewpoints windows and select &quot;Add viewpoint/Add path&quot; to add new viewpoint or path.</li>
+                            <li>Save the Cax File</li>
+                        </ol>
+                        <p><a href="http://training.vcollab.com/Pro_Viewpoints_Tuto.html">Click here</a> for more details</p>
+   
+        <p id="Create_wCAX"><strong>Creating wCAX File</strong></p>
+
+            <p>The wCAX files are created from CAX file using VCollabPro. These files can be created by running python script in VCollabPro or by manually export the files as wCAX from VCollabPro.</p>
+                <p>Method 1</p>
+                    <p>Interactive Mode using Python Script</p>
+                    <ol>
+                        <li>Open model in VCollabPro</li>
+                        <li>File -&gt; Import -&gt;Select the python script to save as wCAX.</li>
+                        <li>wCAX File will be saved.</li>
+                    </ol>
+                    <p>Batch Mode using Python Script</p>
+                    <p>&#39;VCollabPro.exe -b &quot;C:\Temp\export.py&quot;&#39;</p>
+
+                <p>Method 2</p>
+                    <p>VCollabPro GUI</p>
+                    <ol>
+                        <li>Open model in VCollabPro</li>
+                        <li>Create viewpoints if required</li>
+                        <li>File -&gt; Export -&gt; wCAX</li>
+                        <li>wCAX file will be saved.</li>
+                    </ol>
+    </div>
+
+    <h3 id="Supported_Features">Supported Visualization Features</h3>
+    <div>
+    <ul>
+        <li>Most of the viewpoint entities or contents of VCollab (CAX) viewpoints are currently supported in wCAX. More features will be supported in the next release. The following table gives more detail on wCAX supported features.</li>
+        <li>There can be certain limitations for problems when mesh changes from instance to instance (Moving or adaptive mesh). When sections and iso-surfaces entities are present.</li>
+        <li>The file size of wCAX is influenced by following factors:   
+            <ul style="list-style-type:circle">
+                <li>Number of viewpoints (from all viewpaths) stored in wCAX and their contents (parts, results and instances)</li>
+                <li>CAE Transient Animations stored in viewpoints (or number of instances and results used for animation)</li>
+                <li>Thumbnail images for viewpoints stored in wCAX</li>
+            </ul>
+    </li>
+    </ul>
+    </div>
+
+    <h4 style="margin-left:10px">Supported viewpoint states in wCAX as compared to CAX/VCollabPro.</h4>
+    <div>
+    <table border="1" style="margin-left:10px">
+                <tr>
+                    <td style="width: 179px;">Viewpoints</td>
+                    <td style="width: 985px;">Selected Viewpoints are stored (One / All Viewpoints in a path / All Paths)</td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">Part display Modes</td>
+                    <td style="width: 985px;">All parts used in viewpoints are stored in wCAX.<br />
+                        Part colors and display modes are supported. Transparent mode need to be improved (when part surfaces overlap).<br />
+                        Exploded state for the parts is saved in viewpoint.<br />
+                        </td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">CAE State/Plots</td>
+                    <td style="width: 985px;">The most of the CAE states such as color plots, deformed plots, undeformed plots, Legend display are supported.
+                        <br /><span style="color:red">Vector plots, Contour line plots are not supported in current version.</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">CAE Animation</td>
+                    <td style="width: 985px;">Linear, Eigen/Modal and Transient animations stored in viewpoint are supported.<br />
+                        If animation is not stored in viewpoint, Only Linear or Eigen animations can be displayed. Note that when transient animations are stored in viewpoint, all used instances are also stored in wCAX file.The user can select only required instances in VCollabpro (animation settings) to reduce file size.<br />
+                       Note that when displacement result is present, undeformed and deformed shapes are stored in wCAX file for linear animation.<br />
+                        <span style="color:red">The transient animation will play only when the viewpoint is saved with transient animation on. <br />
+                        The contour color won&#39;t change during Complex Eigen Vector animation</span></td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">XYPlot</td>
+                    <td style="width: 985px;">All XYPlots stored in viewpoints are supported in wCAX.Colors for the curves may look different.</td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">Section</td>
+                    <td style="width: 985px;">Section plot with all the display options is supported in wCAX. Display of Section curves may look very thick in certain cases (to be improved)</span></td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">Probe Labels</td>
+                    <td style="width: 985px;">All type of probed labels are supported in viewpoints.</td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">User Annotation Labels</td>
+                    <td style="width: 985px;">All annotations in viewpoints are supported. But fonts and colors may look different.</td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">Measurement Labels</td>
+                    <td style="width: 985px;">Measurement labels are supported</td>
+                </tr>
+                <tr>
+                    <td style="width: 179px;">Background</td>
+                    <td style="width: 985px;">The Background displayed in viewpoint (including images) are supported.</td>
+                </tr>
+            </table>
+    </div>
+
+    <br />
+    <h3 id="Supported_Browsers">Supported Browsers</h3>
+    <div>
+      <p>VCollabWeb Viewer is supported in all Web Browsers that have support for HTML5 + WebGL 1.0.The user can check if WebGL is enabled or not, by visiting the following<span>&nbsp;</span><a href="http://webglreport.com/" rel="noopener" target="_blank">link</a><span>&nbsp;</span>in any browser.</p>
+        <div class="note">
+            <em><strong>Note: </strong></em>Internet Explorer 11 may not support certain animation displays (when mesh is changing during animation)<br /><br />
+            <span>VCollabWeb Viewer may not work properly when "Use hardware acceleration when available" option is disabled in chrome browser.</span>
+        </div>        
+    </div>
+
+    <h3 id="WorkFlow">Work Flow</h3>
+    <div>
+        <p>Here are a few simple steps to share simulation data with others through a web interface.</p>
+        <ul>
+            <li>One needs to use VCollab tools to publish the simulation data/information into the VCollab Web format.</li>
+            <li>Put the file on an HTTP server/PLM/SDM/SLM system</li>
+            <li>Share the link to the file with others</li>
+            <li>Others can click on the link and then view and interact with the 3D file in their browser.</li>
+        </ul>
+        <p >A process can be defined in the PLM/SLM systems or on a server to convert the native CAE/CAD files into the VCollab Web format using the VCollab tools. It is advised to run this process on the same system where the native file resides. Native files are usually very large in size and moving them around, from system to system is a pain. Instead, one can convert the large native file into a lightweight CAX file on the same system and then one can move the lightweight CAX files easily. It is advised to also create Viewpoints and save them into the CAX file before one share the CAX file. Once viewpoints are added to the CAX files, the CAX file becomes a very useful simulation information that can be easily consumed by the non-experts.The experts (ex. CAE Analysts) can create the viewpoints manually and save them into CAX or one can execute VCollab Python scripts to create such viewpoints automatically, in batch mode. As mentioned earlier, this process converts raw simulation data into a very useful and intelligent simulation information that can be easily consumed by other stakeholders.Once these files are created, the link to these files can be shared with the others for easier Web viewing. Once the end user receives the link, they can click on the link to view these files in their WebGL enabled Browsers, without installing any plug-ins.</p>
+        <img alt="" border="0" src="Help_Images/VCollab_WebViewer_Cloud.png" />
+        <div class="note">
+            <em><strong>Note: </strong></em><em>VCollabWeb Application</em> is a set of static HTML and javascript files that provide support for viewing 3D Models in browsers at the client side. It will currently be available only on VCollab Server.
+        </div>
+    </div>
+
+    <h3 id="Embedding_VCollabWebViewer">Embedding VCollabWeb Viewer in a web page</h3> 
+    <div>
+            <p>The following html code is used to embed VCollab Web Viewer in a web page</p>
+            <p>
+                <em><span style="color: rgb(0, 0, 255); font-family: Arial; font-size: small;">&lt;iframe name=&quot;VCollabWeb&quot; id=&quot;VCollabWeb&quot;<span>&nbsp;</span><br />
+                src=&quot;http://vcollab.com/vcollabweb/viewer.html?file=http://vcollab.com/vcollabweb/samples/beam.wcax&quot;<br />
+                width=&quot;700&quot; height=&quot;600&quot;<span>&nbsp;</span><br />
+                seamless=&quot;seamless&quot;<br />
+                frameborder=&quot;0&quot;<span>&nbsp;</span><br />
+                allowfullscreen=&quot;allowfullscreen&quot;&gt;<br />
+                &lt;/iframe&gt;</span></em>
+            </p>
+
+            <p>Here, the URL for the wCAX file should be passed to the &#39;src&#39; field <br />
+                src=&quot;http://vcollab.com/vcollabweb/viewer.html?file=<span style="color: rgb(128, 128, 128);">URL-of-wCAX-to-be-passed</span>&quot;</p>
+            <p><a href="http://training.vcollab.com/VCollabWebViewer_Sample.html" rel="noopener" target="_blank">Click here </a>to view the sample html page.</p>
+                 
+
+          <div class="note">
+            <em><strong>Note: </strong></em>
+                VCollabWeb Application will currently be available only on VCollab Server. The html file that is referred in &#39;src&#39; field is located on VCollab Server.
+                <br />src=&quot;<span style="color: rgb(128, 128, 128);">http://vcollab.com/vcollabweb/viewer.html</span>?file=http://vcollab.com/vcollabweb/samples/beam.wcax&quot;
+                <br />
+                The users can keep the wCAX files on their server and the URL for wCAX can be passed to the &#39;src&#39; field.
+        </div>
+
+          
+            <p><strong>Cross-origin resource request</strong></p>
+            <p>As VCollabWeb Application currently resides at VCollab server, the wCAX files from different server can&#39;t be accessed by VCollabWeb Application due to security reasons. It&#39;s recommended to add &#39;CORS&#39;<span>&nbsp;</span><em>(Cross Origin Resource Sharing)</em><span>&nbsp;</span>header at their server in order to provide file access to VCollabWeb Application. If CORS header is not defined for cross-origin requests, VCollabWeb Viewer throws the following message,</p>
+            <p>&quot;Cross-Origin Request Blocked (Reason: CORS header &#39;Access-Control-Allow-Origin&#39; missing).</p>
+            <p><a href="https://enable-cors.org/server.html" rel="noopener" target="_blank">Click here</a> to view how to set CORS Header.</p>
+    </div>
+
+    <h3 id="Opensourcesoftwares">Open Source Softwares</h3>  
+    <div>
+        <p><a href="thirdpartylibraries.html" target="_blank">Click Here</a> for the open source software used by VCollabWeb Viewer.</p>
+    </div> 
+</div>
+</body>
+</html>

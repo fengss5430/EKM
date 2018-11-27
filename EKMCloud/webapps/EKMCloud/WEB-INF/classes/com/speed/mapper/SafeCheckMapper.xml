@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.SafeCheckMapper">
+	<resultMap type="com.speed.entity.SafeCheck" id="SafeCheckResult">
+	</resultMap>
+	<select id="findCount" resultType="Integer">
+		select count(1) from sc_safeCheck
+	</select>
+	
+	<select id="findAlls" parameterType="Integer" resultMap="SafeCheckResult">
+		select * from sc_safeCheck ORDER BY deleteTime DESC limit #{param1},#{param2} 
+	</select>
+	
+	
+	<select id="findAll" resultMap="SafeCheckResult">
+		select * from sc_safeCheck
+	</select>
+	
+	<select id="find" parameterType="com.speed.entity.SafeCheck" resultMap="SafeCheckResult">
+		select * from sc_safeCheck where userId=#{userId} and fileUrl=#{fileUrl} and operationtype=#{operationtype}
+	</select>
+	
+	<select id="findDownCount" parameterType="com.speed.entity.SafeCheck" resultMap="SafeCheckResult">
+		select * from sc_safeCheck where userId=#{userId} and operationtype=#{operationtype}
+	</select>
+	
+	<insert id="saveSafeCheck" parameterType="com.speed.entity.SafeCheck">
+		insert into `sc_safeCheck`
+		(
+		`fileName`,
+		`fileType`,
+		`userId`,
+		`userName`,
+		`operationtype`,
+		`downcount`,
+		`fileUrl`,
+		`deleteTime`
+		)
+		values
+		(
+		#{fileName},
+		#{fileType},
+		#{userId},
+		#{userName},
+		#{operationtype},
+		#{downcount},
+		#{fileUrl},
+		NOW()
+		)
+	</insert>
+	<update id="updata" parameterType="com.speed.entity.SafeCheck">
+		update sc_safeCheck
+		<set>
+			downcount=#{downcount}
+		</set>
+		where 
+	    id=#{id}
+	</update>
+</mapper>

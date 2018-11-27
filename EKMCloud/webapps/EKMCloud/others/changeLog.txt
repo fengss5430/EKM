@@ -1,0 +1,56 @@
+﻿************************************
+*  VCollabWeb 2017 R1 1.1.117.1225  *
+************************************
+
+New Features / Enhancements / Bug fixes:
+========================================
+    *   Added help document
+    
+Released: 25 DEC 2017
+
+
+************************************
+*  VCollabWeb 2017 R1 1.1.117.1207  *
+************************************
+
+New Features / Enhancements / Bug fixes:
+========================================
+	*   Added option to customize the viewer GUI with config.json file
+	*   Fixed asm.js warning message    
+    
+Released: 07 DEC 2017
+
+
+************************************
+*  VCollabWeb 2017 R1 1.1.117.1122  *
+************************************
+
+New Features / Enhancements / Bug fixes:
+========================================
+    *   Enhanced XY Plot on high resolution display
+    *	Bottom Arrows will be hidden, when there is no viewpoint or one viewpoint
+    *	Fixed Tooltip display issue on touch laptop
+    *	Enhanced Unicode support for labels
+    
+Released: 22 NOV 2017
+
+
+************************************
+*  VCollabWeb 2017 R1 1.1.117.915  *
+************************************
+
+New Features / Enhancements / Bug fixes:
+========================================
+    *   Supports WCAX File version 3.0 and lower
+    *   Added FrameInfo display option in GUI
+    *   Enhanced zooming and fit view functions
+    *   Enhanced Mobile touch interface
+    *   Supports Shaded mesh color
+    *   Supports Feature Edge display
+    *   Supports All Undeformed display modes
+    *   Supports Animation setting options => Pivot, Reverse, Swing and Harmonic 
+    *   Supports multi part connected labels for merged models
+    *   Supports Legend display options =>  Distinct legend, No-result color and Units
+    *   Supports Axis display
+
+Released: 15 SEP 2017

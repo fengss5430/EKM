@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.PlatformMapper">
+	<resultMap type="com.speed.entity.Platform" id="PlatformResult">		
+	</resultMap>
+	
+	<select id="find" resultMap="PlatformResult">
+		SELECT * FROM sc_platform 
+	</select>
+
+	<select id="findByName" parameterType="String" resultType="int">
+		SELECT COUNT(1) FROM sc_platform where binary platformname=#{param1}
+	</select>
+	
+	<insert id="save" parameterType="com.speed.entity.Platform">
+	  insert into `sc_platform` 
+	  (
+	  `platformname`
+	  ) 
+	  values 
+	  (
+	  #{platformname}
+	  )
+	</insert>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM sc_platform WHERE id=#{param1}
+	</delete>
+</mapper>

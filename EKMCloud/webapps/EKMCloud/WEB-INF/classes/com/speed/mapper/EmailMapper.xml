@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.speed.mapper.EmailMapper">
+
+	<resultMap type="com.speed.entity.Email" id="EmailResult">
+	</resultMap>
+	
+	<resultMap type="com.speed.entity.EmailSet" id="EmailSetResult">
+	</resultMap>
+	
+	<select id="findReceiveList" resultMap="EmailResult">
+		select * from sc_mail
+	</select>
+	
+	<select id="findToNameAdrr" resultMap="EmailResult">
+		select * from sc_mail where state=1
+	</select>
+	
+	<select id="findByNameAndEmail" parameterType="com.speed.entity.Email" resultType="Integer">
+		select COUNT(1) from sc_mail where emailname=#{emailname} and emailadress=#{emailadress}
+	</select>
+	
+	<insert id="saveReceiveMess" parameterType="com.speed.entity.Email">
+		insert into `sc_mail`
+		(
+		`emailname`,
+		`emailadress`,
+		`state`
+		)
+		values
+		(
+		#{emailname},
+		#{emailadress},
+		#{state}
+		)
+	</insert>
+	
+	<delete id="deleteEmailMess" parameterType="Integer">
+		DELETE FROM sc_mail WHERE id=#{param1}
+	</delete>
+	
+	<update id="updataEmailMess" parameterType="Integer">
+		UPDATE `sc_mail`
+		SET
+		`state` = 1
+		WHERE `id` = #{param1};
+	</update>
+	<update id="updataEmail">
+		UPDATE `sc_mail`
+		SET
+		`state` = 0
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 发送  -->
+
+	<select id="getEmailSetting" resultMap="EmailSetResult">
+		select * from sc_mail_setting
+	</select>
+
+	<insert id="addEmailSetting" parameterType="com.speed.entity.EmailSet">
+		insert into `sc_mail_setting`
+		(
+		`mailServerHost`,
+		`mailServerPort`,
+		`fromAddress`,
+		`userName`,
+		`password`,
+		`ssltype`,
+		`setdowncount`
+		)
+		values
+		(
+		#{mailServerHost},
+		#{mailServerPort},
+		#{fromAddress},
+		#{userName},
+		#{password},
+		#{sslType},
+		#{setdowncount}
+		)
+	</insert>
+	
+	<delete id="delEmailSetting" >
+		DELETE FROM sc_mail_setting
+	</delete>
+</mapper>

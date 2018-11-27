@@ -1,0 +1,254 @@
+/*---department-management start---*/
+table.dataTable thead th, table.dataTable tfoot th{
+    font-weight:400;
+}
+table{font-size:14px;}
+
+table.dataTable tbody td{position: relative;}
+/*table.dataTable tbody td:nth-child(2){*/
+    /*position: relative;*/
+    /*!*width: 70%;*!*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+/*}*/
+/*协同云 table*/
+table#listviewtable tbody td:nth-child(2),
+table#Designlistviewtable tbody td:nth-child(2){
+    width: auto;
+}
+
+
+
+
+.emptyTips,.beTips,.specialTips{display:none;color:#dd5a43;line-height: 34px;}
+
+/*content*/
+
+#content .btn-groups,.btn-groups{
+	width: 70%;
+    position:relative;
+    z-index:111;
+}
+#content .btn-groups a.btn,.btn-groups a.btn{
+    cursor:pointer;
+}
+#content .table-main,.table-main{
+    margin-top:-49px;
+}
+.table-main table.dataTable.compact thead th:first-child,.table-main table.dataTable.compact thead td:first-child{
+    padding:0;
+    width:25px!important;
+}
+#member-table thead th:first-child{
+    padding:0;
+    width:25px!important;
+}
+.text_area{
+    width:264px;height:150px;
+    resize:none;
+    padding:6px 12px;
+    overflow:auto;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+table .status{
+    color:#0000ff;
+}
+.ta_guide{
+    height:260px !important;
+}
+/*transTab*/
+.transTab input[type="checkbox"]{
+    margin:0 4px 0 0;
+}
+.transTab .leftRole{
+	float:left;
+    margin-right:10px;
+}
+.transTab .rightRole{
+	float:right;
+    margin-left:10px;
+}
+.transTab .boxs{
+    width:176px;height:260px;
+    border:1px solid #ccc;
+    padding:6px 12px;
+    overflow:auto;
+}
+.transTab .boxs>p{
+    cursor:pointer;
+    position:relative;
+}
+
+.modales{
+	width: 100%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 111;
+}
+.transTab .modales{display:none;}
+.transTab .boxs>p:hover span{
+    color:#de7e7e;
+}
+.transTab .transIcon{
+    position: absolute;
+    top: 144px;
+    left:202px;
+}
+.transTab .transIcon .glyphicon-transfer{
+    font-size:30px;
+}
+/*聊天页面*/
+#main-content .mains {
+    padding: 15px 0;
+}
+.comment{
+    float:left;
+    width:380px;
+    margin-right:30px;
+}
+.tab-menu{
+    height:30px;
+    line-height:30px;
+    margin-bottom:0;
+}
+.tab-menu li{
+    float:left;
+    height:30px;
+    padding:0 20px;
+    background:#f4f4f4;
+    border-radius:6px 6px 0 0;
+    box-shadow:5px 0 5px -5px black;;
+}
+.comment .tab-menu li:last-child{
+    margin-left:1px;
+}
+.tab-menu .curr a{ color: #dd5d5d; }
+.tab-menu .curr a .icon{color: #dd5d5d;}
+.tab-menu li:hover em{color: #dd5d5d;}
+.tab-menu li:hover a{ color: #dd5d5d;}
+
+.comment-list{
+    width:100%;
+    min-height:500px !important;
+    background:#f4f4f4;
+    padding:18px 0;
+    border-radius:0 6px 6px 6px;
+}
+.tab-Item .user-img{
+    float:left;
+    width:44px;height:44px;
+}
+.tab-Item .info-maxWidth{
+    float:left;
+    width: calc(100% - 82px);
+    padding: 0 10px;
+    margin-left: 10px;
+    margin-bottom:0;
+    line-height: 44px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.tab-Item .right-icon{
+    float:right;
+    width:20px;height:20px;
+    margin:12px 8px 0 0;
+    background:url(../images/icons/icon-arrow-1.png) no-repeat center center;
+}
+#commentList>li,
+#userList>li>ul>li{
+    height:60px;width: 100%;
+    padding:0 14px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #999;
+}
+#userList{
+    display:none;
+}
+#userList>li>a{
+    display:block;
+    padding:10px 14px;
+}
+#userList>li>ul{
+    display:none;
+}
+#commentList>li>a,
+#userList>li>ul>li>a{
+    display:block;
+    width:352px;height:59px;
+    padding:4px 0;
+    border-bottom:1px solid #dbdbdb;
+}
+
+#commentList li:hover,#userList>li>ul>li:hover{ background: #bfbfc5;}
+#commentList li:hover .info-maxWidth{color:#FFFFFF;}
+#userList>li>ul>li:hover .info-maxWidth{color:#FFFFFF;}
+.colorHei{color:#000000;}
+#userList .glyphicon-triangle-right{transition:1s;}
+#userList .glyphicon-triangle-right:before {
+    content: "\e250";
+}
+#userList .actives .glyphicon-triangle-right{
+    transition:1s;
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg); 	/* IE 9 */
+    -moz-transform:rotate(90deg); 	/* Firefox */
+    -webkit-transform:rotate(90deg); /* Safari Ã¥â€™Å’ Chrome */
+    -o-transform:rotate(90deg); 	/* Opera */
+}
+#commentList>li>a{
+    position: relative;
+}
+#commentList>li>a>span.badge {
+    position: absolute;
+    left: 43px;
+    top: 2px;
+    background-color: #61a3c3;
+}
+
+/*即时*/
+.share-friends {
+    float: left;
+    width: calc(100% - 425px);
+    text-align: center;
+}
+.share-friends .tab-menu .icon-share{
+    display:inline-block;
+    width:18px;height:16px;
+    background:url(../images/icons/icon-share.png) no-repeat;
+    position: relative;
+    top: 3px;
+}
+.shares{
+    background:#f4f4f4;
+    min-height:500px!important;
+    border-radius: 0 6px 6px 6px;
+}
+.share-img{
+    padding: 150px 0;
+    text-align: center;
+    margin:0;
+}
+.share-test{ padding: 20px; font-size: 16px; }
+.shareDoc-btn{ padding: 15px 24px; background: #4c4c4d; color: #fff!important; border-radius: 10px;}
+
+
+/*数据备份*/
+.dataBackMain{
+    padding: 0 15px;
+}
+.dataBackMain p{
+    line-height: 28px;
+    font-size: 14px;
+    margin-bottom: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF0000" offset="0%"></stop>
+            <stop stop-color="#FF6600" offset="9.48429524%"></stop>
+            <stop stop-color="#FFC900" offset="15.4735848%"></stop>
+            <stop stop-color="#FEFF00" offset="22.2090221%"></stop>
+            <stop stop-color="#FEFF00" offset="28.3600425%"></stop>
+            <stop stop-color="#FEFF00" offset="34.4035338%"></stop>
+            <stop stop-color="#F4FF00" offset="40.7783548%"></stop>
+            <stop stop-color="#85FF00" offset="46.9752719%"></stop>
+            <stop stop-color="#00FF00" offset="53.6613157%"></stop>
+            <stop stop-color="#00FF00" offset="60.1646473%"></stop>
+            <stop stop-color="#00FF00" offset="65.8348461%"></stop>
+            <stop stop-color="#00FF7C" offset="71.68732%"></stop>
+            <stop stop-color="#00FFF8" offset="78.2820077%"></stop>
+            <stop stop-color="#00BAFF" offset="84.2468191%"></stop>
+            <stop stop-color="#006BFF" offset="90.5429602%"></stop>
+            <stop stop-color="#1A00FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_skip_previous_black_24px">
+            <path d="M6,6 L8,6 L8,18 L6,18 L6,6 Z M9.5,12 L18,18 L18,6 L9.5,12 Z" id="Shape" stroke="#FFFFFF" stroke-width="0.6" fill="url(#linearGradient-1)"></path>
+            <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+        </g>
+    </g>
+</svg>

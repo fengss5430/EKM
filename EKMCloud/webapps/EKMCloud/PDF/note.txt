@@ -1,0 +1,71 @@
+dataTaable：回调： $('element).on("draw.dt",function(){})
+
+init:
+jquery(document).ready(function(){
+	App.setPage("index");
+	App.init();
+})
+
+Boostrap--modal 禁止modal外弹框消失（Bootstrap 模态框避免点击背景处关闭）
+ 	1、 aria-hidden=”true” data-backdrop=”static”，即可。
+	2、$(‘#myModal’).modal({backdrop: ‘static’, keyboard: false}); 
+backdrop：’static’指的是点击背景空白处不被关闭； 
+keyboard:false指的是触发键盘esc事件时不关闭。
+
+prop：对于HTML元素本身就带有的固有属性
+attr：对于HTML元素我们自己自定义的DOM属
+
+//复制
+varUrl = document.getElementBid('CopyUrl');
+UrlCopyAfterSelect();
+document.execCommand("Copy");
+
+
+
+$	$.ajax({
+					url:'',
+					type:post,
+					data:{random:Math.random()},
+					timeout:30000,
+					success:function(){
+						if(msg.result == 'OK'){
+
+						}else{
+
+						},
+						error:function(){
+
+						}
+
+					}
+				})
+
+
+
+
+#mohe-rili .mh-rili-widget .mh-rest .mh-border, /*--空闲35--*/
+#mohe-rili .mh-rili-widget .mh-work .mh-border,/*--正常-67--*/
+#mohe-rili .mh-rili-widget .mh-busy .mh-border,/*--忙碌-0-*/
+#mohe-rili .mh-rili-widget .mh-book .mh-border{/*--预约-102-*/
+    position: absolute;
+    top: 1px;
+    display: block;
+    width: 30px;/*ke*/
+    height: 30px;/*ke*/
+    overflow: hidden;
+    background-image: url(../images/statu.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+#mohe-rili .mh-rili-widget .mh-rest .mh-border{
+    background-position: 0 0;   /*--空闲--*/
+}
+#mohe-rili .mh-rili-widget .mh-busy .mh-border {
+    background-position: 0 -35px;   /*--忙碌--*/
+}
+#mohe-rili .mh-rili-widget .mh-work .mh-border {
+    background-position: 0 -67px;   /*--正常--*/
+}
+#mohe-rili .mh-rili-widget .mh-book .mh-border {
+background-position: 0 -102px;   /*--预约--*/
+}

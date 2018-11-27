@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.ToDoMapper">
+	<resultMap type="com.speed.entity.todo" id="ToDoResult">		
+	</resultMap>
+    <resultMap type="com.speed.entity.todo" id="ToDoResult1">		
+		 <association property="users" column="userId" 
+	         select="com.speed.mapper.UserMapper.findbyuserId">
+	     </association>
+	</resultMap>
+	
+	<select id="findCount" parameterType="Integer" resultType="Integer">
+		select count(1) from sc_todo WHERE userid=#{param1}
+	</select>
+	
+	<select id="findToDo" parameterType="Integer" resultMap="ToDoResult">
+		select * from sc_todo WHERE userid=#{param1} ORDER BY create_Time DESC limit #{param2},#{param3} 
+	</select>
+	
+	  
+	<insert id="saveToDo" parameterType="com.speed.entity.todo" useGeneratedKeys="true" keyProperty="todoId">
+	  insert into `sc_todo` 
+	  (
+	  `todo_title`,
+	  `todo_content`,
+	  `create_Time`,
+	  `userid`
+	  ) 
+	  values 
+	  (
+	  #{todoTitle},
+	  #{todocontent},
+	  #{createTime},
+	  #{userid}
+	  )
+	</insert>
+	
+	
+	<update id="updateToDo" parameterType="com.speed.entity.todo">
+		update sc_todo
+		<set>
+			<if test="todoTitle != null">
+				todo_title = #{todoTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="todocontent != null">
+				todo_content = #{todocontent,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_Time = #{createTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where todo_Id=#{todoId}
+	</update>
+	
+	<delete id="deleteToDo" parameterType="com.speed.entity.todo">
+		DELETE FROM sc_todo
+		WHERE todo_Id=#{todoId}
+	</delete>
+</mapper>

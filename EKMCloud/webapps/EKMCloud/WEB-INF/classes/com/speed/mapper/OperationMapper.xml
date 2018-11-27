@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.OperationMapper">
+	<resultMap type="com.speed.entity.Operation" id="OperationResult">		
+	</resultMap>
+	
+    <resultMap type="com.speed.entity.OperationPower" id="OperationPowerResult">		
+	</resultMap>
+	
+	<resultMap type="com.speed.entity.Operallot" id="OperallotResult">		
+	</resultMap>
+	
+	<select id="find" resultMap="OperationResult">
+		SELECT * FROM sc_operation
+	</select>
+	
+	<select id="findOperationPower" resultMap="OperationPowerResult">
+		select * from sc_operation_power 
+	</select>
+	
+	<select id="findOperationPowerById" parameterType="Integer" resultMap="OperationPowerResult">
+		select * from sc_operation_power where id=#{param1} 
+	</select>
+	
+    <select id="findOperById" parameterType="Integer" resultMap="OperationResult">
+		select * from sc_operation where operid=#{param1} 
+	</select>
+	
+	<select id="findOperByName" parameterType="String" resultMap="OperationResult">
+		select * from sc_operation where binary operponame=#{param1} 
+	</select>
+	
+	<insert id="save" parameterType="com.speed.entity.Operation" useGeneratedKeys="true" keyProperty="operid">
+	  insert into `sc_operation` 
+	  (
+	  `operponame`,
+	  `createtime`
+	  ) 
+	  values 
+	  (
+	  #{operponame},
+	  NOW()
+	  )
+	</insert>
+	
+	<insert id="saveOperallot" parameterType="com.speed.entity.Operallot">
+	  insert into `sc_operallot` 
+	  (
+	  `leftmenuname`,
+	  `operpowerid`,
+	  `operid`
+	  ) 
+	  values 
+	  (
+	  #{leftmenuname},
+	  #{operpowerid},
+	  #{operid}
+	  )
+	</insert>
+	<select id="findOperallotById" parameterType="Integer" resultMap="OperallotResult">
+		select * from sc_operallot where operid=#{param1} 
+	</select>
+	
+	<select id="findleftIfhave" parameterType="com.speed.entity.Operallot" resultMap="OperallotResult">
+		select * from sc_operallot where operid=#{operid} and leftmenuname=#{leftmenuname}
+	</select>
+	
+	<update id="upOperallot" parameterType="com.speed.entity.Operallot">
+	 update sc_operallot
+	  <set>		 
+	        <if test="operpowerid != null">
+				operpowerid = #{operpowerid,jdbcType=VARCHAR},
+			</if>
+	 </set>
+	  where id=#{id}
+	</update>
+	
+	<update id="updateOperation" parameterType="com.speed.entity.Operation">
+	 update sc_operation
+	  <set>		 
+	        <if test="operponame != null">
+				operponame = #{operponame,jdbcType=VARCHAR},
+			</if>
+	 </set>
+	  where operid=#{operid}
+	</update>
+	
+	
+	
+   <delete id="deleteOperation" parameterType="Integer">
+		delete from sc_operation where operid = #{param1}
+	</delete>
+
+ <delete id="delOperallotByOperid" parameterType="Integer">
+		delete from sc_operallot where operid = #{param1}
+	</delete>
+</mapper>

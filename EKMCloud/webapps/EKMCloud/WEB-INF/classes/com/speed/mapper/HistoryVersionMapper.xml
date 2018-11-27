@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.HistoryVersionMapper">
+	<resultMap type="com.speed.entity.HistoryVersion" id="HistoryVersionResult">
+	</resultMap>
+	<select id="findOtherHisVersion" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE filetype=#{filetype} AND levels=#{levels} AND historyversion!=0
+	</select>
+
+	<select id="findByUrl" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary url=#{url}
+	</select>
+	
+	<select id="findAddPro" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND binary url=#{url} AND levels=#{levels} AND historyversion!=0
+	</select>
+	
+	<select id="findversionBy" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND filetype=#{filetype} AND levels=#{levels} AND versionid!=#{versionid}
+	</select>
+	
+	<select id="findFirstBy" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND levels=#{levels} AND filetype=#{filetype} ORDER BY historyversion LIMIT 0,1
+	</select>
+	
+	<select id="findAllByType" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND levels=#{levels} AND filetype=#{filetype} ORDER BY historyversion DESC LIMIT 0,1
+	</select>
+	<select id="findAllByTypes" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND levels=#{levels} AND filetype=#{filetype} AND LOCATE(#{url},url) ORDER BY historyversion DESC LIMIT 0,1
+	</select>
+	
+	<select id="findByName" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND levels=#{levels} AND filetype=#{filetype} AND historyversion=0
+	</select>
+	
+	<select id="findAll" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE levels=#{levels} AND filetype=#{filetype} 
+	</select>
+	
+	<insert id="add" parameterType="com.speed.entity.HistoryVersion">
+		insert into `sc_history_version`
+		(
+		`filename`,                                
+		`modelnum`,
+		`historyversion`,
+		`ifdirectory`,
+		`createname`,
+		`updatename`,
+		`url`,
+		`createtime`,
+		`updatetime`,
+		`filetype`,
+		`userid`,
+		`levels`,
+		`knowexplai`,
+		`keyword`
+		)
+		values
+		(
+		#{filename},
+		#{modelnum},
+		#{historyversion},
+		#{ifdirectory},
+		#{createname},
+		#{updatename},
+		#{url},
+		#{createtime},
+		#{updatetime},
+		#{filetype},
+		#{userid},
+		#{levels},
+		#{knowexplai},
+		#{keyword}
+		)
+	</insert>
+	
+	<delete id="delHistoryVersionById" parameterType="Integer">
+		DELETE FROM sc_history_version WHERE versionid=#{param1}
+	</delete>
+	
+	<delete id="delHistoryVersion" parameterType="String">
+		DELETE FROM sc_history_version WHERE binary url=#{param1}; 
+	</delete>
+	
+	<select id="findIfRepeat" parameterType="com.speed.entity.HistoryVersion" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE binary filename=#{filename} AND filetype=#{filetype} AND levels=#{levels}
+	</select>
+	
+	<select id="findRepeat" parameterType="com.speed.entity.HistoryVersion" resultType="Integer">
+		SELECT count(1) FROM sc_history_version WHERE binary url=#{url} AND levels=#{levels}
+	</select>
+
+	<select id="findByKeyword" parameterType="String" resultMap="HistoryVersionResult">
+		SELECT * FROM sc_history_version WHERE keyword LIKE concat('%',#{param1},'%')   AND filetype=#{param2}
+	</select>
+	
+	<update id="updateHv" parameterType="com.speed.entity.HistoryVersion">
+		update sc_history_version
+		<set>
+			<if test="filename != null">
+				filename = #{filename},
+			</if>
+			<if test="historyversion != null">
+				historyversion = #{historyversion},
+			</if>
+			<if test="url != null">
+				url = #{url},
+			</if>
+			<if test="updatename != null">
+				updatename = #{updatename},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime},
+			</if>
+			<if test="userid!= null">
+				userid = #{userid}
+			</if>			
+		</set>
+		where versionid=#{versionid}
+	</update>
+</mapper>

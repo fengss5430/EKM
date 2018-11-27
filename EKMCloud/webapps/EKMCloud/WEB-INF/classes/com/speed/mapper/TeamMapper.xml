@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.TeamMapper">
+	<resultMap type="com.speed.entity.Team" id="TeamResult">	
+	</resultMap>
+	<select id="getTeam" resultMap="TeamResult">
+   SELECT * FROM sc_team 
+  </select>
+
+  <select id="findTeamByid" parameterType="Integer" resultMap="TeamResult">
+   SELECT * FROM sc_team where teamid=#{param1}
+  </select>
+  <select id="findByRam" parameterType="String" resultMap="TeamResult">
+   SELECT * FROM sc_team where randomid=#{param1}
+  </select>
+  <select id="findTeamByleader" parameterType="com.speed.entity.Team" resultMap="TeamResult">
+   SELECT * FROM sc_team where leader=#{Leader} 
+    <if test="teamId != null">
+		 and teamid=#{teamId}
+	</if>
+  </select>
+  
+  <select id="findTeamByName" parameterType="String" resultType="Integer">
+   SELECT count(1) FROM sc_team where binary teamname=#{param1}
+  </select>
+  <select id="findTeamByNum" parameterType="String" resultMap="TeamResult">
+   SELECT * FROM sc_team where binary teamnum=#{param1}
+  </select>
+  <select id="findAll" resultMap="TeamUsersResult">
+   SELECT * FROM `sc_team` AS t LEFT JOIN `sc_users` AS u ON t.`leader` = u.`userid`
+  </select>
+  
+  <resultMap type="com.speed.entity.Team" id="TeamUsersResult">
+			<id property="teamId" column="teamid" />
+			<result property="teamName" column="teamname" />
+			<result property="Leader" column="leader" />
+			<result property="teamSize" column="teamsize" />
+			<result property="createTime" column="createtime" />
+			<result property="remark" column="remark" />
+		<association property="user" javaType="com.speed.entity.Users">
+			<id property="userId" column="userid" />
+			<result property="realName" column="realname" />
+			<result property="userName" column="username" />
+			<result property="deptId" column="deptid" />
+			<result property="roleId" column="roleid" />
+			<result property="telephone" column="telephone" />
+			<result property="email" column="email" />
+			<result property="password" column="password" />
+			<result property="iconUrl" column="iconUrl" />
+			<result property="remark" column="remark" />
+			<result property="status" column="status" />
+			<result property="createTime" column="createTime" />
+			<result property="updateTime" column="updateTime" />
+			<result property="generateName" column="generateName" />
+			<result property="useTime" column="usetime" />
+		</association>
+	</resultMap>
+  
+  <insert id="createTeam" parameterType="com.speed.entity.Team" useGeneratedKeys="true" keyProperty="teamId">
+	  INSERT INTO `sc_team`
+            (`teamnum`,
+            `teamname`,
+             `leader`,
+             `createtime`,
+             `remark`,
+             `randomid`
+             )
+		VALUES (#{teamnum},
+				#{teamName},
+		        #{Leader},
+		        #{createTime},
+		        #{remark},
+		        #{randomId}
+		        );
+	</insert>
+	
+	<update id="updateTeamInfo" parameterType="com.speed.entity.Team">
+	 update sc_team
+	  <set>		 
+	        <if test="teamName != null">
+				teamname = #{teamName,jdbcType=VARCHAR},
+			</if>
+	        <if test="Leader != null">
+				leader = #{Leader,jdbcType=VARCHAR},
+			</if>
+			<if test="teamSize != null">
+				teamsize = #{teamSize,jdbcType=VARCHAR},
+			</if>
+			 <if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="randomId != null">
+				randomid = #{randomId,jdbcType=VARCHAR},
+			</if>
+			<if test="teamnum != null">
+				teamnum = #{teamnum,jdbcType=VARCHAR}
+			</if>
+	 </set>
+	  where teamid=#{teamId}
+	</update>
+	
+	<update id="updateLeader" parameterType="com.speed.entity.Team">
+	 update sc_team set leader = #{Leader}  where teamid=#{teamId}
+	</update>
+	
+	<delete id="deleteTeam" parameterType="Integer">
+		DELETE FROM `sc_team` WHERE `teamid` = #{teamId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,95 @@
+*{ margin: 0; padding: 0;}
+body{
+    background-color: #ffffff;
+    height: 100%;
+    /*overflow: hidden;*/
+    overflow-y: scroll;
+    font-size: 14px;
+    color:#000;
+    box-sizing:border-box;
+}
+ul li{  list-style:none;  padding:4px 0;  }
+h1,h2,h3,h4,h5,h6,ul{ margin:0;padding:0;  }
+a{ text-decoration:none!important;  color:#dd5d5d;}
+table{
+    width:100%;
+    margin-left: 25px;
+}
+table tr th,table tr td{
+    border:1px solid #000;
+    padding:6px 10px;
+    color:#000;
+}
+table tr th{
+    background:#ccc;
+}
+table tr td{
+    /*text-align: center;*/
+}
+/*-------per-help page-----------*/
+.wrapBox{ position: relative; background-color: #fff!important; }
+#sidebar{
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 280px;
+    /*min-height: 1080px;*/
+    height:100%;
+    overflow: auto;
+    background-color: #f4f4f4;/*#6f94b8  #f4f4f4*/
+    border-right:1px solid #dbdbdb;
+}
+#sidebar ul{ padding-left: 15px;}
+#sidebar li{ line-height: 30px;}
+#sidebar li a:hover{color: #666!important; font-weight: 600; display: block;}
+
+#sidebar .nav-brand{
+    border-right-color: #4c4c4d; text-align: center;height: 70px; background-color: #4c4c4d; padding: 15px 0;}
+#sidebar .sidebar-menu{ padding-top: 0; }
+#sidebar .sidebar-menu li > a{ color: #4c4c4d; }
+
+#sidebar .submenu{ padding-left: 15px;}
+#sidebar .submenu li a{ color: #555!important;}
+
+/*----main-content------*/
+#main-content{ position: absolute;left: 280px;min-height: 1080px;
+    overflow: auto; width: calc(100% - 280px); padding: 0 15px; }
+
+#main-content p{ margin: 5px 0;}
+#main-content span{ padding-left: 25px;}
+#main-content h2 a{ font-size: 20px; line-height: 40px; color: #000; font-weight: 600; }
+#main-content h3 a{ font-size: 18px; line-height: 40px; color: #000; font-weight: 600; }
+
+#main-content .stySetList{ padding: 0 25px;}
+
+#main-content .stySetBox .stySetList ul,
+#main-content .styManagerBox .styManList ul,
+#main-content .styUSeBox .styUseList ul,
+#main-content .resourceBox .resourceList ul,
+#main-content .taskBox .taskList ul,
+#main-content .myTaskBox .myTasList ul,
+#main-content .myTeamBox .myTeamList ul,
+#main-content .myDataBox .myDataList ul,
+#main-content .teamBox .teamList ul,
+#main-content .markBox .markList ul { padding: 0 30px; }
+
+#main-content .stySetCon .stySetList,
+#main-content .styManagerCon .styManList,
+#main-content .styUSeBox .styUseList,
+#main-content .resourceBox .resourceList,
+#main-content .taskBox .taskList,
+#main-content .myTaskBox .myTasList,
+#main-content .myTeamBox .myTeamList,
+#main-content .myDataBox .myDataList,
+#main-content .teamBox .teamList,
+#main-content .markBox .markList{
+    padding: 0 25px;
+}
+
+#main-content .styManagerBox .styManList li ul{ padding-left: 25px;}
+#main-content img{ width: 100%;}
+#main-content .styManagerBox .styManList li ul p{ padding-left: 25px;}
+
+/*---实心圆-----*/
+#main-content .listType li{ list-style-type: disc;}
+

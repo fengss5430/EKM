@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.speed.mapper.AttachmentMapper">
+
+	<insert id="save" parameterType="com.speed.entity.Attachment"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sc_file (
+		oldname,
+		generatename,
+		suffix,
+		size,
+		url,
+		userid,
+		createtime
+		)
+		VALUES
+		(
+		#{OldName,jdbcType=VARCHAR},
+		#{generateName,jdbcType=VARCHAR},
+		#{suffix,jdbcType=VARCHAR},
+		#{size},
+		#{url,jdbcType=VARCHAR},
+		#{userid},
+		#{createTime}
+		)
+	</insert>
+</mapper>

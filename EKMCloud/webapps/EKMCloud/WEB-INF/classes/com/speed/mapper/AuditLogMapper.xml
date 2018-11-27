@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.AuditLogMapper">
+	<resultMap type="com.speed.entity.AuditLog" id="AuditLogResult">
+	</resultMap>
+	<resultMap type="com.speed.entity.AuditLog" id="AuditLogResult1"
+		extends="AuditLogResult">
+		<association property="users" column="userId"
+			select="com.speed.mapper.UserMapper.findbyuserId"></association>
+	</resultMap>
+
+	<select id="findAuditLog" parameterType="Integer" resultMap="AuditLogResult1">
+		select * from `sc_auditLog` where auditid=#{param1}
+	</select>
+
+	<insert id="saveAudit" parameterType="com.speed.entity.AuditLog">
+		<selectKey resultType="Integer" order="AFTER" keyProperty="auditid">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into `sc_auditLog`
+		(
+		`userid`,
+		`audit_Status`,
+		`audit_explain`,
+		`audit_Time`
+		)
+		values
+		(
+		#{userId},
+		#{auditStatus},
+		#{auditexplain},
+		DATE_FORMAT(NOW(),'%Y-%m-%d')
+		)
+	</insert>
+
+	<delete id="deleteAuditById" parameterType="com.speed.entity.AuditLog">
+		DELETE FROM
+		sc_auditLog WHERE auditid=#{auditid}
+	</delete>
+
+<!-- 	<delete id="deleteByMaid" parameterType="Integer"> -->
+<!-- 		DELETE FROM sc_auditLog -->
+<!-- 		WHERE manager_ID=#{param1} -->
+<!-- 	</delete> -->
+</mapper>

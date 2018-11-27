@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.taskAuditMapper">
+	<resultMap type="com.speed.entity.taskAudit" id="taskAuditResult">
+	</resultMap>
+	<resultMap type="com.speed.entity.taskAudit" id="taskAuditResult1"
+		extends="taskAuditResult">
+		<association property="users" column="userId"
+			select="com.speed.mapper.UserMapper.findbyuserId">
+		</association>
+	</resultMap>
+	<select id="findTime" resultType="Integer" parameterType="com.speed.entity.taskAudit">
+		select count(1) FROM sc_task_audit
+		WHERE 
+		(start_Time &lt; #{startTime} AND end_Time &gt; #{startTime} 
+		OR 
+		start_Time &lt; #{endTime} AND end_Time &gt; #{endTime} 
+		OR
+		start_Time &gt;= #{startTime} AND end_Time &lt;= #{endTime})
+		AND 
+		platform=#{platform}
+	</select>
+	<select id="findByprojectName" resultType="Integer" parameterType="String">
+		select count(1) from
+		sc_task_audit where projectName=#{param1}
+	</select>
+
+	<select id="findTaskAuditByPtime" resultMap="taskAuditResult">
+		SELECT * FROM
+		sc_task_audit where userid=#{userId} ORDER BY apply_Time DESC LIMIT
+		0,5
+	</select>
+
+	<select id="findMyTaskAudit" resultMap="taskAuditResult">
+		SELECT * FROM
+		sc_task_audit where userid=#{param1}
+	</select>
+
+	<select id="findCount" resultType="Integer">
+		select count(1) from
+		sc_task_audit
+	</select>
+
+	<select id="findTaskAudit" parameterType="Integer" resultMap="taskAuditResult1">
+		select * from sc_task_audit ORDER BY start_Time limit
+		#{param1},#{param2}
+	</select>
+
+	<select id="findTaskAuditByid" parameterType="Integer"
+		resultMap="taskAuditResult">
+		SELECT * FROM sc_task_audit where projectId=#{param1}
+	</select>
+
+	<insert id="saveTaskAudit" parameterType="com.speed.entity.taskAudit">
+		insert into `sc_task_audit`
+		(
+		`projectName`,
+		`platform`,
+		`platformname`,
+		`apply_Time`,
+		`start_Time`,
+		`end_Time`,
+		`auditing`,
+		`auditUser`,
+		`project_explain`,
+		`userid`,
+		`audituserName`,
+		`deptid`,
+		`audituserid`
+		)
+		values
+		(
+		#{projectName},
+		#{platform},
+		#{platformname},
+		#{applyTime},
+		#{startTime},
+		#{endTime},
+		#{auditing},
+		#{auditUser},
+		#{projectExplain},
+		#{userid},
+		#{audituserName},
+		#{deptid},
+		#{audituserid}
+		)
+	</insert>
+
+
+
+	<select id="findNowMess" parameterType="com.speed.entity.taskAudit"
+		resultMap="taskAuditResult">
+		SELECT
+		*
+		FROM
+		sc_task_audit
+		WHERE
+		<if test="startTime != null">
+			start_Time &lt; (SELECT CAST((CAST(#{startTime} AS DATE) + INTERVAL 23 HOUR +
+			INTERVAL 59 MINUTE + INTERVAL 59 SECOND)AS DATETIME))
+		</if>
+		AND
+		<if test="startTime != null">
+			end_Time &gt;= (SELECT CAST(CAST(#{startTime} AS DATE)AS DATETIME))
+		</if>
+<!-- 		AND -->
+<!-- 		platform=#{platform} -->
+		ORDER BY start_Time
+	</select>
+
+
+	<select id="findContainUser" parameterType="com.speed.entity.taskAudit"
+		resultType="Integer">
+		SELECT COUNT(1) FROM sc_task_audit
+		WHERE
+		<if test="startTime != null">
+			start_Time &lt;=(SELECT CAST((CAST(#{startTime} AS DATE) + INTERVAL 23 HOUR +
+			INTERVAL 59 MINUTE + INTERVAL 59 SECOND)AS DATETIME))
+		</if>
+		AND
+		<if test="startTime != null">
+			end_Time &gt;=(SELECT CAST(CAST(#{startTime} AS DATE)AS DATETIME))
+		</if>
+		AND
+<!-- 		platform=#{platform} AND -->
+		 userid=#{userid}
+	</select>
+
+
+
+	<select id="findnowMothDaycount" parameterType="com.speed.entity.taskAudit"
+		resultType="Integer">
+		SELECT COUNT(1) FROM sc_task_audit
+		WHERE
+		<if test="startTime != null">
+			start_Time &lt;= (SELECT CAST((CAST(#{startTime} AS DATE) + INTERVAL 23 HOUR +
+			INTERVAL 59 MINUTE + INTERVAL 59 SECOND)AS DATETIME))
+		</if>
+		AND
+		<if test="startTime != null">
+			end_Time &gt;= (SELECT CAST(CAST(#{startTime} AS DATE)AS DATETIME))
+		</if>
+<!-- 		AND -->
+<!-- 		platform=#{platform} -->
+	</select>
+
+
+	<update id="upStatic" parameterType="com.speed.entity.taskAudit">
+		update sc_task_audit
+		<set>
+			<if test="supervisorAudit != null">
+				supervisor_audit = #{supervisorAudit,jdbcType=VARCHAR},
+			</if>
+			<if test="managerAudit != null">
+				manager_audit = #{managerAudit,jdbcType=VARCHAR},
+			</if>
+			<if test="projectStatus != null">
+				project_Status = #{projectStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="audituserid != null">
+				audituserid = #{audituserid,jdbcType=VARCHAR},
+			</if>
+			<if test="supervisorid != null">
+				supervisor_ID = #{supervisorid,jdbcType=VARCHAR},
+			</if>
+			<if test="managerid != null">
+				manager_ID = #{managerid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where projectId=#{projectId}
+	</update>
+	<delete id="deletByUserid" parameterType="Integer">
+		DELETE FROM sc_task_audit WHERE userid =#{param1}
+	</delete>
+</mapper>

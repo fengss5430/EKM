@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.DepartmentMapper">
+	<resultMap type="com.speed.entity.Department" id="DepartmentResult">	
+	
+	</resultMap>
+	
+<select id="findByDeptManager" parameterType="String" resultMap="DepartmentResult" >
+   SELECT * FROM `sc_department` WHERE binary `dept_manager` = #{param}
+</select>
+  <select id="findByRam" parameterType="String" resultMap="DepartmentResult">
+   SELECT * FROM sc_department where randomid=#{param1}
+  </select>
+
+<update id="updateDept" parameterType="com.speed.entity.Department">
+	update sc_department set dept_manager =  #{deptManager} where deptid = #{deptId}
+</update>
+	<select id="findDeptBy" parameterType="com.speed.entity.Department" resultMap="DepartmentResult">
+	   SELECT * FROM sc_department
+	     where
+		<if test="deptNum != null">
+			binary deptnum=#{deptNum}
+		</if>
+		<if test="deptName != null">
+			binary deptname=#{deptName}
+		</if>
+	</select>
+	
+  <select id="findDeptByid" parameterType="Integer" resultMap="DepartmentResult">
+   SELECT * FROM `sc_department` WHERE `deptid` = #{param}
+  </select>
+  
+  <select id="findAll" resultMap="DepartmentResult">
+   SELECT * FROM sc_department
+  </select>
+  
+<update id="updateDeptandl" parameterType="com.speed.entity.Department">
+	update sc_department set dept_manager =  #{deptManager} where deptid = #{deptId}
+</update>
+  
+  <insert id="createDept" parameterType="com.speed.entity.Department" useGeneratedKeys="true" keyProperty="deptId">
+  	INSERT INTO `sc_department`
+            (`deptname`,
+            `deptnum`,
+             `remark`,
+             `dept_manager`,
+             `create_time`,
+             `randomId`,
+             `dept_tel`)
+	VALUES (#{deptName},
+        #{deptNum},
+        #{remark},
+        #{deptManager},
+        DATE_FORMAT(NOW(),'%Y-%m-%d'),
+        #{randomId},
+        #{deptTel});
+	</insert>
+	
+	<update id="updateDeptInfo" parameterType="com.speed.entity.Department">
+	 update sc_department
+	  <set>		 
+	        <if test="deptName != null">
+				deptname = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="randomId != null">
+				randomId = #{randomId,jdbcType=VARCHAR},
+			</if>
+			 <if test="deptNum != null">
+				deptNum = #{deptNum,jdbcType=VARCHAR},
+			</if>
+	        <if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="deptManager != null">
+				dept_manager = #{deptManager,jdbcType=VARCHAR},
+			</if>
+			 <if test="updateTime == null">
+				update_time = DATE_FORMAT(NOW(),'%Y-%m-%d'),
+			</if>
+			 <if test="deptTel != null">
+				dept_tel = #{deptTel,jdbcType=VARCHAR}
+			</if>
+	 </set>
+	  where deptid = #{deptId}
+	</update>
+	
+	<delete id="deleteDept" parameterType="Integer">
+		DELETE FROM `sc_department` WHERE `deptid` = #{deptid}
+	</delete>
+	
+	<select id="findUsersInDept" parameterType="INTEGER" resultMap="DepartmentUsersResult">
+	SELECT scu.*,sct.* FROM `sc_department` AS sct RIGHT JOIN sc_users AS scu ON sct.`deptid` = scu.`deptid` WHERE sct.`deptid` = #{param}
+	</select>
+	<resultMap type="com.speed.entity.Department" id="DepartmentUsersResult">
+		<id property="deptId" column="deptid" />
+		<result property="deptNum" column="deptnum" />
+		<result property="deptName" column="deptname" />
+		<result property="remark" column="remark" />
+		<result property="deptManager" column="dept_manager" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="deptTel" column="dept_tel" />
+		<association property="users" javaType="com.speed.entity.Users">
+			<id property="userId" column="userid" />
+			<result property="realName" column="realname" />
+			<result property="userName" column="username" />
+			<result property="deptId" column="deptid" />
+			<result property="roleId" column="roleid" />
+			<result property="telephone" column="telephone" />
+			<result property="email" column="email" />
+			<result property="password" column="password" />
+			<result property="iconUrl" column="iconUrl" />
+			<result property="remark" column="remark" />
+			<result property="status" column="status" />
+			<result property="createTime" column="createTime" />
+			<result property="updateTime" column="updateTime" />
+			<result property="generateName" column="generateName" />
+			<result property="useTime" column="usetime" />
+		</association>
+	</resultMap>
+	<select id="findUsersNotInDept" parameterType="INTEGER" resultMap="DepartmentUsersResult">
+	SELECT * FROM `sc_users` WHERE userid NOT IN (SELECT scu.userid FROM `sc_department` AS sct RIGHT JOIN sc_users AS scu ON sct.`deptid` = scu.`deptid` WHERE sct.`deptid` = #{param,jdbcType=INTEGER})
+	</select>
+	
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.speed.mapper.ChatRecordMapper">
+     <resultMap type="com.speed.entity.ChatRecord" id="ChatRecordResult">	
+     
+	 </resultMap>
+	 
+	<insert id="saveChatRecord" parameterType="com.speed.entity.ChatRecord">
+		INSERT INTO sc_chat_record (
+		fromname,
+		toname,
+		content,
+		chat_time
+		)
+		VALUES
+		(
+		#{fromName,jdbcType=VARCHAR},
+		#{toName,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{chatTime}
+		)
+	</insert>
+	 
+
+<!-- 	1.看过 -->
+	<update id="updatechatStatic" parameterType="com.speed.entity.ChatRecord">
+	UPDATE sc_chat_record sc 
+	SET static = 1 WHERE binary sc.`fromname`=#{fromName} 
+	AND binary sc.`toname`= #{toName} AND sc.static=0
+	</update>
+	
+	<update id="updatereadStatic" parameterType="com.speed.entity.ChatRecord">
+	UPDATE sc_chat_record sc 
+	SET readstatic = 1 WHERE binary sc.`fromname`=#{fromName} 
+	AND binary sc.`toname`= #{toName} AND sc.readstatic=0
+	</update>
+	
+<!-- 	1在线看过 -->
+	<update id="updatechatStaticNo" parameterType="com.speed.entity.ChatRecord">
+	UPDATE sc_chat_record sc 
+	SET static = 1 
+	WHERE 
+	binary sc.`fromname`=#{fromName} 
+	AND 
+	binary sc.`toname`= #{toName}
+	AND 
+	sc.`content`= #{content}   
+	</update>
+	
+	<select id="findChatRecord" parameterType="String" resultMap="ChatRecordResult">
+	SELECT * FROM `sc_chat_record` scr 
+    WHERE 
+   binary scr.`fromname`=#{param1}
+    AND 
+   binary scr.`toname`=#{param2} 
+    AND 
+    DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= DATE(scr.`chat_time`)
+    OR
+   binary scr.`toname`=#{param1}
+    AND 
+   binary scr.`fromname`=#{param2}
+    AND 
+    DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= DATE(scr.`chat_time`)
+    ORDER BY 
+    scr.`chat_time`,scr.`chat_id`
+    </select>
+    
+   <select id="findNewChat" parameterType="String" resultMap="ChatRecordResult">
+	SELECT DISTINCT(fromname) FROM `sc_chat_record` scr  WHERE binary scr.`toname`=#{param1} ORDER BY scr.`chat_time` DESC LIMIT 0,5
+    </select> 
+    
+   <select id="findNewChats" parameterType="String" resultMap="ChatRecordResult">
+	SELECT * FROM `sc_chat_record` scr WHERE binary scr.`fromname`=#{param1} AND binary scr.`toname`=#{param2} AND scr.`static`=0 ORDER BY scr.`chat_time` DESC LIMIT 0,1
+    </select>  
+    
+     <select id="findNewlyChatList" parameterType="String" resultMap="ChatRecordResult">
+	SELECT DISTINCT(fromname) FROM `sc_chat_record` scr  WHERE binary scr.`toname`=#{param1}
+    </select>
+    <select id="findNewlyList" parameterType="String" resultMap="ChatRecordResult">
+	SELECT DISTINCT(toname) FROM `sc_chat_record` scr  WHERE binary scr.`fromname`=#{param1}
+    </select>
+     <select id="findNewlyChatLists" parameterType="String" resultMap="ChatRecordResult">
+	SELECT * FROM `sc_chat_record` scr WHERE binary scr.`toname`=#{param1}
+    </select>
+     <select id="findDate" parameterType="String" resultMap="ChatRecordResult">
+	SELECT * FROM `sc_chat_record` scr WHERE binary scr.`fromname`=#{param1} ORDER BY scr.`chat_time` DESC LIMIT 0,1
+    </select>
+     <select id="findDates" parameterType="String" resultMap="ChatRecordResult">
+	SELECT * FROM `sc_chat_record` scr WHERE binary scr.`toname`=#{param1} ORDER BY scr.`chat_time` DESC LIMIT 0,1
+    </select>
+<!--     删除数据表中发信人或收信人为空的行 -->
+    <delete id="deleteNameIsNull">
+		DELETE FROM sc_chat_record WHERE binary fromname IS NULL or binary toname IS NULL
+	</delete>
+<!-- 	  删除用户时删除相关的聊天信息 -->
+	 <delete id="deleteNameFN" parameterType="String">
+		DELETE FROM sc_chat_record WHERE binary fromname =#{param1} or binary toname =#{param1}
+	</delete>
+	
+	<select id="findByFT" parameterType="String" resultType="int">
+		SELECT COUNT(1) FROM sc_chat_record  WHERE binary fromname =#{param1} AND binary toname =#{param2} AND readstatic=0
+    </select>
+</mapper>

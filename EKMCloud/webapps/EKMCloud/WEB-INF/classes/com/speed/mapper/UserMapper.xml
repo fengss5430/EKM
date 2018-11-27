@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"C:\Users\Administrator\Workspaces\MyEclipse 8.5\Mybatis01\WebRoot\mybatis-3-mapper.dtd">
+
+<mapper namespace="com.speed.mapper.UserMapper">
+	<resultMap type="com.speed.entity.Users" id="UsersResult">
+	</resultMap>
+
+	<resultMap type="com.speed.entity.Users" id="UsersResult1"
+		extends="UsersResult">		
+		<association property="team" column="teamid"
+			select="com.speed.mapper.TeamMapper.findTeamByid"></association>
+	</resultMap>
+
+	<resultMap type="com.speed.entity.Users" id="UsersResult2"
+		extends="UsersResult">		
+		<association property="department" column="deptId"
+			select="com.speed.mapper.DepartmentMapper.findDeptByid"></association>
+		<association property="team" column="teamid"
+			select="com.speed.mapper.TeamMapper.findTeamByid"></association>	
+	</resultMap>
+	
+	<resultMap type="com.speed.entity.Users" id="UsersResult3"
+		extends="UsersResult">		
+		<association property="department" column="deptId"
+			select="com.speed.mapper.DepartmentMapper.findDeptByid"></association>
+			<association property="role" column="roleId"
+			select="com.speed.mapper.RoleMapper.findRoleByid"></association>
+	</resultMap>
+	<select id="findLoginCount" resultType="int">
+		select count(1) from sc_users where status=1
+	</select>
+	<select id="findAll" resultMap="UsersResult">
+		select * from sc_users where roleid!=1000 and roleid!=1001 and roleid!=1002 and roleid!=1004 and roleid!=1005
+	</select>
+	
+	<select id="findByAdId" parameterType="Integer" resultMap="UsersResult">
+		select * from sc_users where adid=#{adid}
+	</select>
+	<select id="findSpace" resultMap="UsersResult">
+		select * from sc_users 
+	</select>
+
+	<select id="findbyuserId" parameterType="int" resultMap="UsersResult">
+		select * from sc_users WHERE userid=#{param1}
+	</select>
+	
+	<select id="findbyuserName" parameterType="String" resultMap="UsersResult3">
+		select * from sc_users WHERE binary username=#{param1}
+	</select>
+	<select id="findbyName" parameterType="String" resultMap="UsersResult">
+		select * from sc_users WHERE binary username=#{param1}
+	</select>
+	<select id="findbyNames" parameterType="String" resultType="int">
+		select count(1) from sc_users WHERE binary username=#{param1}
+	</select>
+	<select id="findbydeptId" parameterType="Integer" resultMap="UsersResult3">
+		select * from sc_users WHERE deptid=#{param1} AND userid!=61
+<!-- SELECT scu.*,sct.* FROM sc_users scu RIGHT JOIN sc_team sct ON scu.`teamid`=sct.`teamid` WHERE deptid=#{param1} -->
+	</select>
+	
+	<select id="findDeptId" parameterType="Integer" resultMap="UsersResult">
+		select * from sc_users WHERE deptid=#{param1} and roleid!=1001
+	</select>
+	
+	<select id="findNoDept" resultMap="UsersResult">
+		select * from sc_users WHERE deptid=0 AND userid!=61 and roleid!=1001
+	</select>
+	
+<!-- 	<select id="findbyNodeptId" parameterType="Integer" resultMap="UsersResult3"> -->
+<!-- 		SELECT * FROM `sc_users` scu  -->
+<!-- 		WHERE scu.`userid` NOT IN (SELECT scu.`userid` FROM sc_users scu WHERE deptid=#{param1}) AND scu.`userid`!=61	 -->
+<!-- 	</select> -->
+
+<select id="findbyNodeptId" parameterType="Integer" resultMap="UsersResult3">
+	SELECT * FROM sc_users where deptid=0 AND userid!=61
+<!-- 		SELECT * FROM `sc_users` scu  -->
+<!-- 		WHERE scu.`userid` NOT IN (SELECT scu.`userid` FROM sc_users scu WHERE deptid=#{param1}) AND scu.`userid`!=61	 -->
+	</select>
+	<select id="numberOfTeam" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) FROM `sc_users` WHERE FIND_IN_SET(#{teamid}, teamid); 
+	</select>
+
+	<select id="findByEmailPw" parameterType="String" resultMap="UsersResult">
+		select * from sc_users  where binary username=#{param1} 
+		and
+		 password=#{param2}
+	</select>
+
+
+	<select id="findUserName" parameterType="Integer" resultMap="UsersResult">
+		SELECT * FROM sc_users where teamid=(select teamid from sc_users where
+		userid=#{param1})
+	</select>
+
+	<update id="updataUserdeptid" parameterType="com.speed.entity.Users">
+		update sc_users
+		<set>
+			deptid=#{deptId},
+			roleid=#{roleId}
+		</set>
+		where 
+	   binary username=#{userName}
+	</update>
+
+	<update id="updataRemark" parameterType="String">
+		update sc_users set remark=#{remark} where userid=61
+	</update>
+
+	<insert id="saveUsers" parameterType="com.speed.entity.Users">
+		insert into `sc_users`
+		(
+		`username`,
+		`password`,
+		`telephone`,
+		`email`,
+		`createTime`
+
+		)
+		values
+		(
+		#{userName},
+		#{password},
+		#{telephone},
+		#{email},
+		DATE_FORMAT(NOW(),'%Y-%m-%d')
+		)
+	</insert>
+	
+	<select id="findbyuId" parameterType="INTEGER" resultMap="UsersResult">
+		select * from sc_users where userid = #{userId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="findper" parameterType="INTEGER" resultMap="UsersResult">
+		select * from sc_users where userid = #{userId,jdbcType=INTEGER}
+	</select>
+	
+	<update id="updataper" parameterType="com.speed.entity.Users">
+		update sc_users su, sc_department sd
+		<set>
+			<if test="userName != null">
+				su.username = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				su.realname = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				su.telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				su.email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="remark!= null">
+				sd.remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="generateName != null">
+				su.generateName = #{generateName,jdbcType=VARCHAR},
+			</if>
+			<if test="iconUrl != null">
+				su.iconUrl = #{iconUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="identity != null">
+				su.identity = #{identity,jdbcType=VARCHAR},
+			</if>
+			su.updateTime=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		</set>
+		where 
+		<if test="deptId != null">
+			su.`deptid`=sd.`deptid` AND
+		</if>
+		
+	    su.userid=#{userId}
+	</update>
+	<!-- 更新团队id --> 
+	<update id="updateTeamIdById" parameterType="com.speed.entity.Users">
+		update sc_users  set  `teamid`=#{teamId}  where userid=#{userId}
+	</update>
+	<!-- 更新部门id --> 
+	<update id="updateDeptIdById" parameterType="int">
+		update sc_users  set  `deptid`=0  where deptid=#{param1}
+	</update>
+	<update id="updateIdentityAndTeamId" parameterType="com.speed.entity.Users">
+		update sc_users
+		<set>
+			
+			identity = #{identity,jdbcType=VARCHAR},
+		
+			teamid = #{teamId,jdbcType=INTEGER},
+			
+			updateTime=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		</set>
+		where 
+	    userid=#{userId}
+	</update>
+<update id="updateIdentityAndDeptId" parameterType="com.speed.entity.Users">
+		update sc_users
+		<set>
+			identity = #{identity,jdbcType=VARCHAR},
+		
+			deptid = #{deptId,jdbcType=INTEGER},
+			
+			updateTime=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		</set>
+		where 
+	    binary username=#{userName}
+	</update>
+
+
+<update id="updataUserStatic" parameterType="String">
+		update sc_users
+		<set>
+			status = 1,
+			loginTime=#{param2}
+		</set>
+		where 
+	    binary username=#{param1}
+	</update>
+	
+<update id="updataUserStatics" parameterType="com.speed.entity.Users">
+		update sc_users
+		<set>
+			status = 0,
+			usetime=#{useTime}
+		</set>
+		where 
+	   binary username=#{userName}
+	</update>
+	
+	
+	
+	<update id="uppic" parameterType="com.speed.entity.Users">
+		update sc_users
+		<set>
+			<if test="picture != null">
+				picture = #{picture,jdbcType=VARCHAR},
+			</if>
+			updateTime=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		</set>
+
+		where userid=#{userId}
+	</update>
+
+	<select id="findUsersInTeam" parameterType="String" resultMap="UsersResult3">
+		SELECT * FROM sc_users WHERE FIND_IN_SET(#{teamId}, teamid);
+	</select>
+	<select id="findUsersInTeams" parameterType="String" resultMap="UsersResult">
+		SELECT * FROM sc_users WHERE FIND_IN_SET(#{teamId}, teamid);
+	</select>
+
+	<select id="findUsersNotInTeam" parameterType="String"
+		resultMap="UsersResult2">
+		SELECT * FROM `sc_users` WHERE userid NOT IN 
+		(SELECT userid FROM sc_users WHERE FIND_IN_SET(#{teamId}, teamid)) and userid!=61
+	</select>
+
+
+<!--获取除了数据库备份管理员的所有用户  -->
+	<select id="getUserList" resultMap="UsersResult3">
+		SELECT * FROM sc_users where userid != 61
+<!-- 		SELECT * FROM sc_users where userid  <![CDATA[<>]]>61 -->
+	</select>
+	<resultMap type="com.speed.entity.Users" id="UsersTeamResult">
+		<id property="userId" column="userid" />
+		<result property="realName" column="realname" />
+		<result property="userName" column="username" />
+		<result property="deptId" column="deptid" />
+		<result property="roleId" column="roleid" />
+		<result property="telephone" column="telephone" />
+		<result property="email" column="email" />
+		<result property="password" column="password" />
+		<result property="iconUrl" column="iconUrl" />
+		<result property="remark" column="remark" />
+		<result property="status" column="status" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+		<result property="generateName" column="generateName" />
+		<result property="protype" column="protype" />
+		<result property="useTime" column="usetime" />
+		<association property="team" javaType="com.speed.entity.Team">
+			<id property="teamId" column="teamid" />
+			<result property="teamName" column="teamname" />
+			<result property="Leader" column="leader" />
+			<result property="teamSize" column="teamsize" />
+			<result property="createTime" column="createtime" />
+			<result property="remark" column="remark" />
+			<!-- <result property="userId" column="userid" /> -->
+		</association>
+		<association property="department" javaType="com.speed.entity.Department">
+			<id property="deptId" column="deptid" />
+			<result property="deptNum" column="deptnum" />
+			<result property="deptName" column="deptname" />
+			<result property="remark" column="remark" />
+			<result property="deptManager" column="dept_manager" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="deptTel" column="dept_tel" />
+		</association>
+		<association property="role" javaType="com.speed.entity.Role">
+			<id property="roleId" column="roleid" />
+			<result property="roleName" column="rolename" />
+			<result property="remark" column="remark" />
+			<result property="createTime" column="createtime" />
+			<result property="powerid" column="powerid" />
+		</association>
+	</resultMap>
+
+	<delete id="deleteByUserId" parameterType="Integer">
+		DELETE FROM sc_users
+		WHERE userid=#{userId}
+	</delete>
+
+	<delete id="deleteByAdId" parameterType="Integer">
+		DELETE FROM sc_users WHERE adid=#{adid}
+	</delete>
+
+	<insert id="addUser" parameterType="com.speed.entity.Users">
+		insert into `sc_users`
+		(
+		`username`,
+		`password`,
+		`telephone`,
+		`email`,
+		`realName`,
+		`createTime`,
+		`roleid`,
+		`teamid`,
+		`deptid`,
+		`protype`,
+		`operid`,
+		`deadDay`,
+		`spaceSize`,
+		`adid`
+		)
+		values
+		(
+		#{userName},
+		#{password},
+		#{telephone},
+		#{email},
+		#{realName},
+		#{createTime},
+		#{roleId},
+		#{teamId},
+		#{deptId},
+		#{protype},
+		#{operid},
+		#{deadDay},
+		#{spaceSize},
+		#{adid}
+		)
+	</insert>
+ 
+<update id="updateUserById" parameterType="com.speed.entity.Users">
+		UPDATE `sc_users`
+		<set>
+			<if test="userName != null">
+				username = #{userName},
+			</if>
+			<if test="realName != null">
+				realname = #{realName},
+			</if>
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone},
+			</if>
+			<if test="email != null">
+				email = #{email},
+			</if>
+			<if test="roleId!= null">
+				roleid = #{roleId},
+			</if>
+			<if test="teamId != null">
+				teamid = #{teamId},
+			</if>
+			<if test="protype != null">
+				protype = #{protype},
+			</if>
+			<if test="operid != null">
+				operid = #{operid},
+			</if>
+			<if test="deadDay != null">
+				deadDay = #{deadDay},
+			</if>
+			<if test="deptId != null">
+				deptid = #{deptId},
+			</if>
+			<if test="spaceSize != null">
+				spacesize = #{spaceSize}
+			</if>
+		</set>
+		where 
+		<if test="userId != null">
+			userid=#{userId}
+		</if>
+	</update>
+<!--  <update id="updateUserById" parameterType="com.speed.entity.Users"> -->
+<!-- 		UPDATE `sc_users` -->
+<!-- 		SET -->
+<!-- 		`username`= #{userName}, -->
+<!-- 		`realname`= #{realName}, -->
+<!-- 		`password`= #{password}, -->
+<!-- 		`telephone`= #{telephone}, -->
+<!-- 		`email`= #{email}, -->
+<!-- 		`roleid`= #{roleId}, -->
+<!-- 		`teamid`= #{teamId}, -->
+<!-- 		`protype`=#{protype}, -->
+<!-- 		`operid`=#{operid}, -->
+<!-- 		`deptid` = #{deptId} -->
+<!-- 		WHERE `userid` = #{userId} -->
+<!-- 	</update> -->
+ 
+	<update id="addUserIn2Team" parameterType="com.speed.entity.Users">
+		UPDATE `sc_users`
+		SET
+		`teamid` = #{teamId}
+		WHERE `userid` = #{userId};
+	</update>
+
+<!-- 	<update id="removeUserFromTeam" parameterType="Integer"> -->
+<!-- 		UPDATE `sc_users` -->
+<!-- 		SET -->
+<!-- 		`teamid` = null -->
+<!-- 		WHERE `userid` = #{param1}; -->
+<!-- 	</update> -->
+
+	<update id="addUserIn2Dept" parameterType="Integer">
+		UPDATE `sc_users`
+		SET
+		`deptid` = #{param1}
+		WHERE `userid` = #{param2};
+	</update>
+
+	<update id="removeUserFromDept" parameterType="Integer">
+		UPDATE `sc_users`
+		SET
+		`deptid` = 0
+		WHERE `userid` = #{param1};
+	</update>
+	<insert id="addHiddenInfo" parameterType="com.speed.entity.HiddenInfo">
+		insert into `sc_hidden_info`
+		(
+		`user_id`,
+		`hidden_password`,
+		`hidden_status`
+		)
+		values
+		(
+		#{user_id},
+		#{hidden_password},
+		#{hidden_status}
+		)
+	</insert>
+	
+	
+	
+	
+</mapper>

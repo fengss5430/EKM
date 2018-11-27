@@ -1,0 +1,20 @@
+﻿{
+	"showUpdateMsgDays" : 0,
+	"changeLogFile" : "others/changeLog.txt",
+	"gui" : {			
+			"showGUI" : true, 
+			"showFileOpen" : false,
+			"filterMenuIcons" : false,
+			"menuIcons" :{
+							"viewpoints": true,
+							"caeanimation": true,
+							"displaymode": true, 
+							"capture": true,
+							"fitview": true,
+							"resetviewpoint": true,
+							"legend": true,
+							"frameinfo": true,
+							"fullscreen": true
+						}
+			}
+}
